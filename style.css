@@ -1,0 +1,7 @@
+@font-face {
+font-family: "font";
+src: url("./font/Carlito-Regular.ttf");
+}
+* {font-family: "font";}
+a {color: #4F5054;}
+u {text-decoration: underline;}
