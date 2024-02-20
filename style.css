@@ -10,7 +10,7 @@ src: url("./font/Carlito-Italic.ttf");
 font-family: "fontBold";
 src: url("./font/Carlito-Bold.ttf");
 }
-* {font-family: "font";}
+* {font-family: 'Lucida Console', monospace;}
 b {font-family: "fontBold";}
 i {font-family: "fontItalic";}
 a {color: #4F5054;}
