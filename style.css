@@ -1,17 +1,3 @@
-@font-face {
-font-family: "font";
-src: url("./font/Carlito-Regular.ttf");
-}
-@font-face {
-font-family: "fontItalic";
-src: url("./font/Carlito-Italic.ttf");
-}
-@font-face {
-font-family: "fontBold";
-src: url("./font/Carlito-Bold.ttf");
-}
 * {font-family: 'Lucida Console', monospace;}
-b {font-family: "fontBold";}
-i {font-family: "fontItalic";}
 a {color: #4F5054;}
 u {text-decoration: underline;}
