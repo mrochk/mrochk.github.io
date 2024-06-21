@@ -61,8 +61,9 @@
     @include clearfix;
 
     .header-title {
-      @include sans;
-      font-weight: 300;
+      //@include sans;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 700;
       font-size: 1.75rem;
       line-height: 2rem;
       letter-spacing: -.05rem;
