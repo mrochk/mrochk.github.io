@@ -44,6 +44,8 @@
   .header-contact-info {
     @include sans;
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 15px;
   }
   .header-contact-info p a {
     color: inherit;
