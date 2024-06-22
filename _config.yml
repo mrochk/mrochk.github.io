@@ -21,7 +21,7 @@ resume_contact_telephone:       ""
 resume_contact_address:         ""
 
 resume_header_contact_info:     "(+33) 6 42 83 09 69 - mrochkoulets@gmail.com"
-display_header_contact_info:    "true"
+display_header_contact_info:    "false"
 
 resume_header_intro: "<p>I am a twenty-one years old computer science masters student mainly interested in <b>Machine/Deep Learning</b>. I am currently studying at <b>KU Leuven</b> in Belgium. If you would like to know more about me, feel free to take a look at my <a href=\"./resume.pdf\">resume</a>.<br><br>I am always interested and looking for new challenges and opportunities. If you would like to contact me, do not hesitate to use my personal email address mentioned above.</p>"
 
