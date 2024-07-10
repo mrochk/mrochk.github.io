@@ -21,7 +21,7 @@
 .page-header { padding: 1.5rem 0;
 
   .avatar {
-    width: 150px;
+    width: 250px;
     max-width: 100%;
     overflow: hidden;
     @include border-radius(2px);
@@ -29,6 +29,7 @@
     margin-top: 30px;
     margin-bottom: 34px;
     display: block;
+    border: 5px solid #000000;
   }
 
   .header-name {
@@ -39,6 +40,7 @@
     letter-spacing: -.15rem;
     line-height: 1;
     margin: 1rem 0 0;
+    color: #000000;
 
   }
 
