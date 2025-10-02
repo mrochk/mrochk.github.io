@@ -23,7 +23,7 @@ resume_contact_address:         ""
 resume_header_contact_info:     "(+33) 6 42 83 09 69 - mrochkoulets@gmail.com"
 display_header_contact_info:    "false"
 
-resume_header_intro: "<p>My name is Maxime, I'm a second year Computer Science Master's student, mainly interested in Machine Learning, both on a theoretical level as well as in its applications to various fields. I am currently studying at KU Leuven in Belgium.<br><br><ul><li><a href=\"./resume.pdf\">resume</a></li><li><a href=\"https://github.com/mrochk\">github</a></li><li><a href=\"https://www.linkedin.com/in/mrochk\">linkedin</a></li></ul><br><br>If you'd like to contact me, do not hesitate to use my personal email address or phone number mentioned below.<br><br><b>E-mail</b>: <i>mrochkoulets[at]gmail[dot]com</i><br><b>Phone:</b> <i>(+33) 6 42  83 09 69</i></p>"
+resume_header_intro: "<p>Myw name is Maxime, I'm a second year Computer Science Master's student, mainly interested in Machine Learning, both on a theoretical level as well as in its applications to various fields. I am currently studying at KU Leuven in Belgium.<br><ul><li><a href=\"./resume.pdf\">Resume</a></li><li><a href=\"https://github.com/mrochk\">GitHub</a></li><li><a href=\"https://www.linkedin.com/in/mrochk\">LinkedIn</a></li></ul><br>If you'd like to contact me, do not hesitate to use my personal email address or phone number mentioned below.<br><br><b>E-mail</b>: <i>mrochkoulets[at]gmail[dot]com</i><br><b>Phone:</b> <i>(+33) 6 42  83 09 69</i></p>"
 
 # use "yes" to display the email contact button,
 # "no" to display an "I'm not looking for work" message,
