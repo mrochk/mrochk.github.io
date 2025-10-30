@@ -1,6 +1,6 @@
 # Site settings
-title: "Maxime Rochkoulets"
-description: ""
+title: "mrochk"
+description: "Personal website of Maxime Rochkoulets."
 
 # Build settings
 markdown: kramdown
