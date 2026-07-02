@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Maxime Rochkoulets",
+    "section": "",
+    "text": "My name is Maxime, I’m an AI researcher.\nBelow is some more information about what I’m currently working on, you can also find my resume here."
+  },
+  {
+    "objectID": "index.html#learning-from-biological-sequences",
+    "href": "index.html#learning-from-biological-sequences",
+    "title": "Maxime Rochkoulets",
+    "section": "Learning from biological sequences",
+    "text": "Learning from biological sequences"
+  },
+  {
+    "objectID": "index.html#tensor-decoupling-for-nn-compression",
+    "href": "index.html#tensor-decoupling-for-nn-compression",
+    "title": "Maxime Rochkoulets",
+    "section": "Tensor decoupling (for NN compression)",
+    "text": "Tensor decoupling (for NN compression)"
+  },
+  {
+    "objectID": "index.html#other",
+    "href": "index.html#other",
+    "title": "Maxime Rochkoulets",
+    "section": "Other",
+    "text": "Other"
+  }
+]
