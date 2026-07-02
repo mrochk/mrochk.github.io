@@ -1,13 +1,3 @@
 ---
 title: "Maxime Rochkoulets"
 ---
-
-My name is Maxime, I'm an AI researcher.
-
-Below is some more information about what I'm currently working on, you can also find my resume [here](./resume.pdf).
-
-## Learning from biological sequences 
-
-## Tensor decoupling (for NN compression)
-
-## Other
