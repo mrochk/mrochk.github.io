@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "reading.html",
+    "href": "reading.html",
+    "title": "Reading List",
+    "section": "",
+    "text": "A collection of books and papers that I have read or am planning to read."
+  },
+  {
+    "objectID": "reading.html#books",
+    "href": "reading.html#books",
+    "title": "Reading List",
+    "section": "Books",
+    "text": "Books"
+  },
+  {
     "objectID": "reading.html#papers",
     "href": "reading.html#papers",
     "title": "Reading List",
