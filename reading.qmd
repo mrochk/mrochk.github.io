@@ -1,0 +1,13 @@
+---
+title: "Reading List"
+---
+
+A collection of books and papers that I have either ~~read~~ or am planning to read in the near future.
+
+## Books
+
+## Papers
+
+- Muon is Scalable for LLM Training [link](https://arxiv.org/abs/2502.16982)
+- A Path Towards Autonomous Machine Intelligence [link](https://openreview.net/forum?id=BZ5a1r-kVsf)
+- Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [link](https://arxiv.org/abs/2301.08243)

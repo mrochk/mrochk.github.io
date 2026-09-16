@@ -10,8 +10,8 @@ website:
         text: Home
       - href: reading.qmd
         text: Reading List
-      - href: about.qmd
-        text: About
+      - href: contact.qmd
+        text: Contact
 
 format:
   html:
