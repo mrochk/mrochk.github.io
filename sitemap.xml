@@ -2,10 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mrochk.github.io/reading.html</loc>
-    <lastmod>2026-09-16T13:40:42.227Z</lastmod>
+    <lastmod>2026-09-16T13:45:12.571Z</lastmod>
   </url>
   <url>
-    <loc>https://mrochk.github.io/about.html</loc>
-    <lastmod>2026-09-16T13:26:18.523Z</lastmod>
+    <loc>https://mrochk.github.io/index.html</loc>
+    <lastmod>2026-09-16T13:52:08.183Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mrochk.github.io/contact.html</loc>
+    <lastmod>2026-09-16T13:44:04.527Z</lastmod>
   </url>
 </urlset>

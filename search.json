@@ -4,7 +4,7 @@
     "href": "reading.html",
     "title": "Reading List",
     "section": "",
-    "text": "A collection of books and papers that I have read or am planning to read."
+    "text": "A collection of books and papers that I have either read or am planning to read in the near future."
   },
   {
     "objectID": "reading.html#books",
@@ -19,5 +19,19 @@
     "title": "Reading List",
     "section": "Papers",
     "text": "Papers\n\nMuon is Scalable for LLM Training (https://arxiv.org/abs/2502.16982)\nA Path Towards Autonomous Machine Intelligence (https://openreview.net/forum?id=BZ5a1r-kVsf)\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (https://arxiv.org/abs/2301.08243)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Maxime Rochkoulets",
+    "section": "",
+    "text": "My name is Maxime, I’m an AI researcher currently working in Singapore (Genome Institute of Singapore).\nI’m open to PhD opportunities :)"
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact",
+    "section": "",
+    "text": "E-Mail: mrochkoulets[at]gmail[dot]com\nLinkedIn: linkedin.com/in/mrochk\nGitHub: github.com/mrochk"
   }
 ]
