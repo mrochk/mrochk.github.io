@@ -18,14 +18,14 @@
     "href": "reading.html#papers",
     "title": "Reading List",
     "section": "Papers",
-    "text": "Papers\n\nMuon is Scalable for LLM Training (https://arxiv.org/abs/2502.16982)\nA Path Towards Autonomous Machine Intelligence (https://openreview.net/forum?id=BZ5a1r-kVsf)\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (https://arxiv.org/abs/2301.08243)"
+    "text": "Papers\n\nMuon is Scalable for LLM Training link\nA Path Towards Autonomous Machine Intelligence link\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture link"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Maxime Rochkoulets",
     "section": "",
-    "text": "My name is Maxime, I’m an AI researcher currently working in Singapore (Genome Institute of Singapore).\nI’m open to PhD opportunities :) so do not hesitate to contact me."
+    "text": "My name is Maxime, I’m an AI researcher working in Singapore (Genome Institute of Singapore).\nCurrently I mostly work on DNA/RNA foundation models.\nI obtained my MSc in CS from KU Leuven, where I wrote a thesis called Improving Tensor Decoupling with Scaling and Smoothing link. Later on, this work was continued an turned into a paper link.\nI’m open to PhD opportunities :) so please do not hesitate to contact me."
   },
   {
     "objectID": "contact.html",
