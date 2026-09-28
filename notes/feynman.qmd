@@ -1,0 +1,8 @@
+---
+title: "Six Easy Pieces (Richard Feynman)"
+author: Maxime Rochkoulets
+---
+
+<img src="../images/feynman.jpg" width="150" border="3">
+
+I am basically illiterate in physics, so this is my attempt to grasp some basic concepts. Might give some reviews as I read the book.

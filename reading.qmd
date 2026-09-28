@@ -2,12 +2,22 @@
 title: "Reading List"
 ---
 
-A collection of books and papers that I have either ~~read~~ or am planning to read in the near future.
+Books and papers that I've read or am planning to read. Sometimes I write some personal notes.
+
+Papers are primarily about ML. 
 
 ## Books
 
-## Papers
+- *Six Easy Pieces*, Richard Feynman [[notes](./notes/feynman.qmd)]
+- *Salammbô*, Gustave Flaubert
 
-- Muon is Scalable for LLM Training [link](https://arxiv.org/abs/2502.16982)
-- A Path Towards Autonomous Machine Intelligence [link](https://openreview.net/forum?id=BZ5a1r-kVsf)
-- Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [link](https://arxiv.org/abs/2301.08243)
+## Papers / Blog Posts
+
+- Enhanced Transformer with Rotary Position Embedding (RoPE) [[paper](https://arxiv.org/abs/2104.09864)] [[notes](./notes/rope.qmd)]
+- *Muon-related*
+  - Muon is Scalable for LLM Training [[paper](https://arxiv.org/abs/2502.16982)]
+  - [https://www.lakernewhouse.com/writing/muon-1](https://www.lakernewhouse.com/writing/muon-1)
+- *JEPA-related*
+  - A Path Towards Autonomous Machine Intelligence [[paper](https://openreview.net/forum?id=BZ5a1r-kVsf)]
+  - Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [[paper](https://arxiv.org/abs/2301.08243)]
+- Kimi K3: Open Frontier Intelligence [[paper](https://arxiv.org/abs/2607.24653)]
