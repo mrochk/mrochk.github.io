@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Maxime Rochkoulets">
 
-<title>Reading List – Maxime Rochkoulets</title>
+<title>Enhanced Transformer with Rotary Position Embedding (RoPE) – Maxime Rochkoulets</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,19 +30,19 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6bcff8a0361b4baca83fe3591404289e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6bcff8a0361b4baca83fe3591404289e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -58,8 +59,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -69,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Maxime Rochkoulets</span>
     </a>
   </div>
@@ -79,15 +109,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./reading.html" aria-current="page"> 
+    <a class="nav-link" href="../reading.html"> 
 <span class="menu-text">Reading List</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./contact.html"> 
+    <a class="nav-link" href="../contact.html"> 
 <span class="menu-text">Contact</span></a>
   </li>  
 </ul>
@@ -101,28 +131,27 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#books" id="toc-books" class="nav-link active" data-scroll-target="#books">Books</a></li>
-  <li><a href="#papers-blog-posts" id="toc-papers-blog-posts" class="nav-link" data-scroll-target="#papers-blog-posts">Papers / Blog Posts</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Reading List</h1>
+<h1 class="title">Enhanced Transformer with Rotary Position Embedding (RoPE)</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Maxime Rochkoulets </p>
+          </div>
+  </div>
     
   
     
@@ -133,36 +162,75 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Books and papers that I’ve read or am planning to read. Sometimes I write some personal notes.</p>
-<p>Papers are primarily about ML.</p>
-<section id="books" class="level2">
-<h2 class="anchored" data-anchor-id="books">Books</h2>
+<p>When we process sequences, the order of tokens matters (e.g words in a sentence).</p>
+<p>Pre-transformer approaches, such as RNNs, encode order implicitly by sequentially updating their hidden state.</p>
+<p>Transformers, on the other hand, are equivariant to token order permutation when this position information is not explicitly injected.</p>
+<p>That is, for a transformer model <span class="math inline">\(\operatorname{encoder}\)</span>, input matrix <span class="math inline">\(\mathbf{X} \in \mathbb{R}^{T \times d}\)</span> and permutation <span class="math inline">\(\mathbf{P}\)</span>, it holds that <span class="math display">\[\operatorname{encoder}(\mathbf{P} \cdot \mathbf{X}) = \mathbf{P} \cdot \operatorname{encoder}(\mathbf{X}),\]</span> meaning that changing token order does not impact the computed representations.</p>
+<p>Therefore, we must find a way to inject positional information.</p>
+<p>Recall the attention mechanism <span class="math display">\[\mathbf{O} = \operatorname{softmax}\left(\frac{\mathbf{QK}^T}{\sqrt{d}}\right)\mathbf{V},\]</span> a useful way to think about this “position problem” is to say that individual query and key vectors are generated by functions <span class="math display">\[
+\mathbf{q}_i = \mathbf{f}_q(\mathbf{x}_i, i) \qquad \mathbf{k}_j = \mathbf{f}_k(\mathbf{x}_j, j),
+\]</span> where each <span class="math inline">\(\mathbf{f}_{\{q, k\}}\)</span> takes as input the “raw” vector <span class="math inline">\(\mathbf{x}_i\)</span> and position <span class="math inline">\(i\)</span>, and outputs a new vector with injected positional information.</p>
+<p>In the original “Attention Is All You Need” paper<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> the authors use <em>absolute positional encoding</em> <span class="math display">\[
+\mathbf{f}_q(\mathbf{x}_i, i) = \mathbf{W}^{(q)}(\mathbf{x}_i + \mathbf{p}_i) \qquad \mathbf{f}_k(\mathbf{x}_j, j) = \mathbf{W}^{(k)}(\mathbf{x}_j + \mathbf{p}_j)
+\]</span> where <span class="math inline">\(\mathbf{p}_i\)</span> is a vector generated deterministically (but it can also be learned).</p>
+<hr>
+<p>The RoPE approach differs in two ways</p>
+<ol type="1">
+<li>we use <strong>relative position</strong> (between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>) instead of absolute</li>
+<li>we <strong>multiply</strong> (rotate) the input vector rather than adding</li>
+</ol>
+<p>Let’s first look at what happens in our product <span class="math inline">\(\mathbf{QK}^T\)</span>, for a single pair of vectors <span class="math inline">\((\mathbf{q}_i,\mathbf{k}_j)\)</span> <span class="math display">\[\mathbf{q}_i^T\mathbf{k}_j = \mathbf{f}_q(\mathbf{x}_i, i)^T \mathbf{f}_k(\mathbf{x}_j, j).\]</span></p>
+<p>Now, what is the constraint that the equation above should satisfy if we want to encode relative position information ?</p>
+<p><span class="math inline">\(\to\)</span> The product of each pair of query and key vectors should be the result of a function <span class="math inline">\(g\)</span> that only takes the relative position <span class="math inline">\(j - i\)</span> as input <span class="math display">\[\mathbf{f}_q(\mathbf{x}_i, i)^T \mathbf{f}_k(\mathbf{x}_j, j) = \mathbf{g}(\mathbf{x}_i, \mathbf{x}_j, j - i).\]</span></p>
+<p>The authors further require <span class="math display">\[\mathbf{f}_q(\mathbf{x}, 0) = \mathbf{W}^{(q)}\mathbf{x} \qquad \mathbf{f}_k(\mathbf{x}, 0) = \mathbf{W}^{(k)}\mathbf{x}.\]</span></p>
+<p>Then, they show that a solution for the 2D case <span class="math inline">\(\mathbf{x} = [x_1, x_2]\)</span> is <span class="math display">\[\mathbf{f}_{\{q, k\}}(\mathbf{x}_j, j) =
+\begin{bmatrix}
+\cos(j\theta) &amp; -\sin(j\theta)\\
+\sin(j\theta) &amp; \cos(j\theta)
+\end{bmatrix}
+\cdot \mathbf{W}^{\{q, k\}} \cdot \mathbf{x}_j,
+\]</span> and prove that this formulation satisfies the above constraints.</p>
+<p>To understand why, we denote the introduced rotation matrix as <span class="math inline">\(\mathbf{R}(i, \theta)\)</span> and again take a look at <span class="math display">\[\mathbf{f}_q(\mathbf{x}_i, i)^T \mathbf{f}_k(\mathbf{x}_j, j) = \left(\mathbf{R}(i, \theta) \cdot \mathbf{W}^{(q)} \cdot \mathbf{x}_i\right)^T\left(\mathbf{R}(j, \theta) \cdot \mathbf{W}^{(k)} \cdot \mathbf{x}_j\right),\]</span> with middle product <span class="math display">\[
+\mathbf{R}(i, \theta)^T\, \mathbf{R}(j, \theta) =
+\begin{bmatrix}
+\cos(i\theta) &amp; \sin(i\theta)\\
+-\sin(i\theta) &amp; \cos(i\theta)
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\cos(j\theta) &amp; -\sin(j\theta)\\
+\sin(j\theta) &amp; \cos(j\theta)
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos((i-j)\theta) &amp; \sin((i-j)\theta)\\
+-\sin((i-j)\theta) &amp; \cos((i-j)\theta)
+\end{bmatrix}
+= \mathbf{R}(j-i, \theta).
+\]</span></p>
+<p>This is pretty neat: using individual rotations that are function of absolute position, the dot-product ends up encoding relative position only <span class="math display">\[
+\mathbf{q}_i^T\mathbf{k}_j = \mathbf{x}_i^T \cdot \mathbf{W}^{(q)T} \cdot \mathbf{R}(j-i, \theta) \cdot \mathbf{W}^{(k)} \cdot \mathbf{x}_j.
+\]</span></p>
+<p>The authors then proceed to generalize for the <span class="math inline">\(d = 2k\)</span> case with a sparse block-diagonal matrix, and also give a form that is more efficient to compute.</p>
+<p>They also prove a <em>long-term decay property</em>, matching the intuition that tokens that are further apart should have less connection.</p>
+<hr>
+<p>Core properties of RoPE</p>
 <ul>
-<li><em>Six Easy Pieces</em>, Richard Feynman [<a href="./notes/feynman.html">notes</a>]</li>
-<li><em>Salammbô</em>, Gustave Flaubert</li>
+<li>acts on query and key vectors, <strong>after</strong> their projections, this is why it is applied at every layer and not just once at the beginning</li>
+<li>does not inject position information to value vectors</li>
+<li>it is multiplicative (rotates vectors) rather than additive</li>
+<li>injects relative positional information, attention scores depend only on relative offset</li>
 </ul>
-</section>
-<section id="papers-blog-posts" class="level2">
-<h2 class="anchored" data-anchor-id="papers-blog-posts">Papers / Blog Posts</h2>
-<ul>
-<li>Enhanced Transformer with Rotary Position Embedding (RoPE) [<a href="https://arxiv.org/abs/2104.09864">paper</a>] [<a href="./notes/rope.html">notes</a>]</li>
-<li><em>Muon-related</em>
-<ul>
-<li>Muon is Scalable for LLM Training [<a href="https://arxiv.org/abs/2502.16982">paper</a>]</li>
-<li><a href="https://www.lakernewhouse.com/writing/muon-1">https://www.lakernewhouse.com/writing/muon-1</a></li>
-</ul></li>
-<li><em>JEPA-related</em>
-<ul>
-<li>A Path Towards Autonomous Machine Intelligence [<a href="https://openreview.net/forum?id=BZ5a1r-kVsf">paper</a>]</li>
-<li>Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [<a href="https://arxiv.org/abs/2301.08243">paper</a>]</li>
-</ul></li>
-<li>Kimi K3: Open Frontier Intelligence [<a href="https://arxiv.org/abs/2607.24653">paper</a>]</li>
-</ul>
 
 
-</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Where the authors already highlight some desirable properties of positional encodings, such as the model being able to attend to relative positions and extrapolating to longer sequences than seen during training.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
