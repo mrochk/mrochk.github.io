@@ -4,20 +4,16 @@ title: "Maxime Rochkoulets"
 
 <img src="images/pp.jpg" width="250" border="3">
 
-I'm Maxime, an AI researcher working in Singapore (Genome Institute of Singapore).
+Hi I'm Maxime, an AI researcher working in Singapore (Genome Institute of Singapore). Before that, I obtained a masters in computer science from KU Leuven (you can find my thesis [here](./docs/thesis.pdf)).
 
-Before that, I obtained a masters in computer science from KU Leuven.
-
-My interests in ML lie mainly in non-supervised approaches (self-supervised / reinforcement learning).
-
-Currently, I primarily work on foundation models for genomics.
+My interests in machine learning lie mainly in non-supervised approaches (self-supervised / reinforcement learning). Currently, I primarily work on foundation models for genomics (DNA & RNA).
 
 I am open to PhD opportunities (starting in September 2027) so please do not hesitate to [contact me](https://mrochk.github.io/contact.html). 
 
 ***
 
 <center>
-[**GitHub**](https://github.com/mrochk) &nbsp; &nbsp; &nbsp; &nbsp;  [**Scholar**](https://scholar.google.com/citations?user=d8uMxiYAAAAJ) 
+[**GitHub**](https://github.com/mrochk) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  [**Scholar**](https://scholar.google.com/citations?user=d8uMxiYAAAAJ) 
 </center>
 
 ***
