@@ -53,6 +53,6 @@
     "href": "reading.html#papers-blog-posts",
     "title": "Reading List",
     "section": "Papers / Blog Posts",
-    "text": "Papers / Blog Posts\n\nEnhanced Transformer with Rotary Position Embedding (RoPE) [paper] [notes]\nMuon-related\n\nMuon is Scalable for LLM Training [paper]\nhttps://www.lakernewhouse.com/writing/muon-1\n\nJEPA-related\n\nA Path Towards Autonomous Machine Intelligence [paper]\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [paper]\n\nKimi K3: Open Frontier Intelligence [paper]"
+    "text": "Papers / Blog Posts\n\nGeneral\n\nEnhanced Transformer with Rotary Position Embedding (RoPE) [paper] [notes]\nKimi K3: Open Frontier Intelligence [paper]\nFrom Entropy to Epiplexity: Rethinking Information for Computationally Bounded Intelligence [paper]\n\n\n\nMuon-related\n\nMuon is Scalable for LLM Training [paper]\nhttps://www.lakernewhouse.com/writing/muon-1\n\n\n\nJEPA-related\n\nA Path Towards Autonomous Machine Intelligence [paper]\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [paper]\n\n\n\nFisher Information"
   }
 ]
