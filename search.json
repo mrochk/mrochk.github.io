@@ -1,10 +1,45 @@
 [
   {
+    "objectID": "notes/feynman.html",
+    "href": "notes/feynman.html",
+    "title": "Six Easy Pieces (Richard Feynman)",
+    "section": "",
+    "text": "I am basically illiterate in physics, so this is my attempt to grasp some basic concepts. Might give some reviews as I read the book."
+  },
+  {
+    "objectID": "reading.html",
+    "href": "reading.html",
+    "title": "Reading List",
+    "section": "",
+    "text": "Books and papers that I’ve read or am planning to read. Sometimes I add some personal notes or summaries.\nPapers are primarily about ML."
+  },
+  {
+    "objectID": "reading.html#books",
+    "href": "reading.html#books",
+    "title": "Reading List",
+    "section": "Books",
+    "text": "Books\n\nSix Easy Pieces, Richard Feynman [notes]\nSalammbô, Gustave Flaubert"
+  },
+  {
+    "objectID": "reading.html#papers-blog-posts",
+    "href": "reading.html#papers-blog-posts",
+    "title": "Reading List",
+    "section": "Papers / Blog Posts",
+    "text": "Papers / Blog Posts\n\nGeneral\n\nEnhanced Transformer with Rotary Position Embedding (RoPE) [paper] [notes]\nKimi K3: Open Frontier Intelligence [paper]\nFrom Entropy to Epiplexity: Rethinking Information for Computationally Bounded Intelligence [paper]\n\n\n\nMuon-related [notes]\n\nLaker Newhouse’s blog post\nMuon is Scalable for LLM Training [paper]\nDion: Distributed Orthonormalized Updates [paper]\n\n\n\nJEPA-related\n\nA Path Towards Autonomous Machine Intelligence [paper]\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [paper]\n\n\n\nFisher Information"
+  },
+  {
     "objectID": "contact.html",
     "href": "contact.html",
     "title": "Contact",
     "section": "",
     "text": "E-Mail mrochkoulets[at]gmail[dot]com\nLinkedIn linkedin.com/in/mrochk"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Maxime Rochkoulets",
+    "section": "",
+    "text": "Hi I’m Maxime, an AI researcher working in Singapore (Genome Institute of Singapore). Before that, I obtained a masters in computer science from KU Leuven (you can find my thesis here).\nMy interests in machine learning lie mainly in non-supervised approaches (self-supervised / reinforcement learning). Currently, I primarily work on foundation models for genomics (DNA & RNA).\nI am open to PhD opportunities (starting in September 2027) so please do not hesitate to contact me.\n\n\nGitHub             Scholar"
   },
   {
     "objectID": "notes/rope.html",
@@ -19,40 +54,5 @@
     "title": "Enhanced Transformer with Rotary Position Embedding (RoPE)",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nWhere the authors already highlight some desirable properties of positional encodings, such as the model being able to attend to relative positions and extrapolating to longer sequences than seen during training.↩︎"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Maxime Rochkoulets",
-    "section": "",
-    "text": "Hi I’m Maxime, an AI researcher working in Singapore (Genome Institute of Singapore). Before that, I obtained a masters in computer science from KU Leuven (you can find my thesis here).\nMy interests in machine learning lie mainly in non-supervised approaches (self-supervised / reinforcement learning). Currently, I primarily work on foundation models for genomics (DNA & RNA).\nI am open to PhD opportunities (starting in September 2027) so please do not hesitate to contact me.\n\n\nGitHub             Scholar"
-  },
-  {
-    "objectID": "notes/feynman.html",
-    "href": "notes/feynman.html",
-    "title": "Six Easy Pieces (Richard Feynman)",
-    "section": "",
-    "text": "I am basically illiterate in physics, so this is my attempt to grasp some basic concepts. Might give some reviews as I read the book."
-  },
-  {
-    "objectID": "reading.html",
-    "href": "reading.html",
-    "title": "Reading List",
-    "section": "",
-    "text": "Books and papers that I’ve read or am planning to read. Sometimes I write some personal notes.\nPapers are primarily about ML."
-  },
-  {
-    "objectID": "reading.html#books",
-    "href": "reading.html#books",
-    "title": "Reading List",
-    "section": "Books",
-    "text": "Books\n\nSix Easy Pieces, Richard Feynman [notes]\nSalammbô, Gustave Flaubert"
-  },
-  {
-    "objectID": "reading.html#papers-blog-posts",
-    "href": "reading.html#papers-blog-posts",
-    "title": "Reading List",
-    "section": "Papers / Blog Posts",
-    "text": "Papers / Blog Posts\n\nGeneral\n\nEnhanced Transformer with Rotary Position Embedding (RoPE) [paper] [notes]\nKimi K3: Open Frontier Intelligence [paper]\nFrom Entropy to Epiplexity: Rethinking Information for Computationally Bounded Intelligence [paper]\n\n\n\nMuon-related\n\nMuon is Scalable for LLM Training [paper]\nLaker Newhouse’s blog post\n\n\n\nJEPA-related\n\nA Path Towards Autonomous Machine Intelligence [paper]\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [paper]\n\n\n\nFisher Information"
   }
 ]
