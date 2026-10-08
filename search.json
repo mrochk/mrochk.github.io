@@ -18,14 +18,14 @@
     "href": "reading.html#books",
     "title": "Reading List",
     "section": "Books",
-    "text": "Books\n\nSix Easy Pieces, Richard Feynman [notes]\nSalammbô, Gustave Flaubert"
+    "text": "Books\n\nSix Easy Pieces, Richard Feynman\nSalammbô, Gustave Flaubert"
   },
   {
     "objectID": "reading.html#papers-blog-posts",
     "href": "reading.html#papers-blog-posts",
     "title": "Reading List",
     "section": "Papers / Blog Posts",
-    "text": "Papers / Blog Posts\n\nGeneral\n\nEnhanced Transformer with Rotary Position Embedding (RoPE) [paper] [notes]\nKimi K3: Open Frontier Intelligence [paper]\nFrom Entropy to Epiplexity: Rethinking Information for Computationally Bounded Intelligence [paper]\n\n\n\nMuon-related [notes]\n\nLaker Newhouse’s blog post\nMuon is Scalable for LLM Training [paper]\nDion: Distributed Orthonormalized Updates [paper]\n\n\n\nJEPA-related\n\nA Path Towards Autonomous Machine Intelligence [paper]\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [paper]\n\n\n\nFisher Information"
+    "text": "Papers / Blog Posts\n\nGeneral\n\nEnhanced Transformer with Rotary Position Embedding (RoPE) [paper] [notes]\nKimi K3: Open Frontier Intelligence [paper]\n\n\n\nMuon-related [notes]\n\nLaker Newhouse’s blog post\nMuon is Scalable for LLM Training [paper]\nDion: Distributed Orthonormalized Updates [paper]\n\n\n\nJEPA-related\n\nA Path Towards Autonomous Machine Intelligence [paper]\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [paper]\n\n\n\nEpiplexity\n\nFrom Entropy to Epiplexity: Rethinking Information for Computationally Bounded Intelligence [paper]\nMatthew Farrugia’s blog post\n\n\n\nFisher Information"
   },
   {
     "objectID": "contact.html",
