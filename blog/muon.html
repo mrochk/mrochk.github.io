@@ -59,6 +59,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -133,6 +162,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Sources:</p>
+<ul>
+<li><a href="https://www.lakernewhouse.com/writing/muon-1">www.lakernewhouse.com/writing/muon-1</a></li>
+<li><a href="https://www.lakernewhouse.com/writing/muon-2">www.lakernewhouse.com/writing/muon-2</a></li>
+</ul>
+<p><br></p>
+<p>Let <span class="math inline">\(\theta \in \mathbb{R}^d\)</span> be the parameters of our neural network.</p>
+<p>We have a differentiable loss function <span class="math inline">\(\mathcal{L}: \mathbb{R}^d \to \mathbb{R}\)</span> that tells us how good our model performs.</p>
+<p>We want to find an update <span class="math inline">\(\Delta \theta\)</span>, such that <span class="math inline">\(\mathcal{L}(\theta + \Delta \theta) \leq \mathcal{L}(\theta)\)</span>.</p>
+<p>In other words, we want to update our parameters <span class="math inline">\(\theta^{(t+1)} \gets \theta^{(t)} + \Delta \theta^{(t)}\)</span>.</p>
+<p>This can be formulated as <span class="math display">\[
+\underset{\Delta \theta}{\operatorname{argmin}} \mathcal{L}(\theta + \Delta \theta)
+\]</span></p>
+<p>A Taylor expansion yields <span class="math display">\[
+\mathcal{L}(\theta + \Delta \theta) = \mathcal{L}(\theta) + (\nabla_{\theta} \mathcal{L}(\theta))^T\Delta \theta +
+\]</span></p>
 
 
 

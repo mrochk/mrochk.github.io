@@ -35,6 +35,13 @@
     "text": "Papers / Blog Posts\n\nGeneral\n\nEnhanced Transformer with Rotary Position Embedding (RoPE) [paper] [notes]\nKimi K3: Open Frontier Intelligence [paper]\n\n\n\nMuon-related [notes]\n\nLaker Newhouse’s blog post\nMuon is Scalable for LLM Training [paper]\nDion: Distributed Orthonormalized Updates [paper]\n\n\n\nJEPA-related\n\nA Path Towards Autonomous Machine Intelligence [paper]\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [paper]\n\n\n\nEpiplexity\n\nFrom Entropy to Epiplexity: Rethinking Information for Computationally Bounded Intelligence [paper]\nMatthew Farrugia’s blog post\n\n\n\nFisher Information"
   },
   {
+    "objectID": "blog/muon.html",
+    "href": "blog/muon.html",
+    "title": "Muon",
+    "section": "",
+    "text": "Sources:\n\nwww.lakernewhouse.com/writing/muon-1\nwww.lakernewhouse.com/writing/muon-2\n\n\nLet \\(\\theta \\in \\mathbb{R}^d\\) be the parameters of our neural network.\nWe have a differentiable loss function \\(\\mathcal{L}: \\mathbb{R}^d \\to \\mathbb{R}\\) that tells us how good our model performs.\nWe want to find an update \\(\\Delta \\theta\\), such that \\(\\mathcal{L}(\\theta + \\Delta \\theta) \\leq \\mathcal{L}(\\theta)\\).\nIn other words, we want to update our parameters \\(\\theta^{(t+1)} \\gets \\theta^{(t)} + \\Delta \\theta^{(t)}\\).\nThis can be formulated as \\[\n\\underset{\\Delta \\theta}{\\operatorname{argmin}} \\mathcal{L}(\\theta + \\Delta \\theta)\n\\]\nA Taylor expansion yields \\[\n\\mathcal{L}(\\theta + \\Delta \\theta) = \\mathcal{L}(\\theta) + (\\nabla_{\\theta} \\mathcal{L}(\\theta))^T\\Delta \\theta +\n\\]"
+  },
+  {
     "objectID": "blog/feynman.html",
     "href": "blog/feynman.html",
     "title": "Six Easy Pieces (Richard Feynman)",
@@ -60,7 +67,7 @@
     "href": "index.html",
     "title": "Maxime Rochkoulets",
     "section": "",
-    "text": "Hi I’m Maxime, an AI researcher working in Singapore (Genome Institute of Singapore). Prior to that, I obtained my masters in computer science from KU Leuven (you can read my thesis here).\nMy interests in machine learning lie mainly in non-supervised approaches (such as ssl or rl).\nCurrently I mainly work on self-supervised training for genomics (DNA / RNA).\nI am open to PhD opportunities (starting in September 2027) so please do not hesitate to contact me.\n\n\ngithub             scholar             blog"
+    "text": "Hi I’m Maxime, an AI researcher working in Singapore (Genome Institute of Singapore).\nPrior to that, I obtained my masters in computer science from KU Leuven (you can read my thesis here).\nMy interests in machine learning lie mainly in non-supervised approaches (such as ssl or rl).\nI am open to PhD opportunities (starting in September 2027), so please do not hesitate to contact me.\n\n\ngithub             scholar             blog"
   },
   {
     "objectID": "contact.html",
