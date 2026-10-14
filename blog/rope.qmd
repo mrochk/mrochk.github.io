@@ -3,6 +3,9 @@ title: "Enhanced Transformer with Rotary Position Embedding (RoPE)"
 author: Maxime Rochkoulets
 ---
 
+Sources:
+- [https://arxiv.org/abs/2104.09864](https://arxiv.org/abs/2104.09864)
+
 When we process sequences, the order of tokens matters (e.g words in a sentence).
 
 Pre-transformer approaches, such as RNNs, encode order implicitly by sequentially updating their hidden state.
