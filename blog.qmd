@@ -1,0 +1,15 @@
+---
+title: "Blog"
+---
+
+<br>
+
+## October 2026
+
+### [muon](./blog/muon.qmd)
+
+## September 2026
+
+### [rotary positional embeddings](./blog/rope.qmd)
+
+
