@@ -1,5 +1,5 @@
 ---
-title: "Muon and its Hyperparameters"
+title: "Muon"
 author: Maxime Rochkoulets
 ---
 
