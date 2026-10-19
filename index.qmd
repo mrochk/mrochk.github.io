@@ -2,18 +2,20 @@
 title: "Maxime Rochkoulets"
 ---
 
-<img src="images/pp.jpg" width="250" border="3">
+<img src="images/pp.jpg" width="200" border="3">
 
-Hi I'm Maxime, an AI researcher working in Singapore (Genome Institute of Singapore). Before that, I obtained a masters in computer science from KU Leuven (you can find my thesis [here](./docs/thesis.pdf)).
+Hi I'm Maxime, an AI researcher working in Singapore (Genome Institute of Singapore).
 
-My interests in machine learning lie mainly in non-supervised approaches (self-supervised / reinforcement learning). Currently, I primarily work on foundation models for genomics (DNA & RNA).
+Prior to that, I obtained my masters in computer science from KU Leuven (you can read my thesis [here](./docs/thesis.pdf)).
 
-I am open to PhD opportunities (starting in September 2027) so please do not hesitate to [contact me](https://mrochk.github.io/contact.html). 
+My interests in machine learning lie mainly in non-supervised approaches (such as ssl or rl).
+
+I am open to PhD opportunities (starting in September 2027), so please do not hesitate to [contact me](https://mrochk.github.io/contact.html). 
 
 ***
 
 <center>
-[**GitHub**](https://github.com/mrochk) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  [**Scholar**](https://scholar.google.com/citations?user=d8uMxiYAAAAJ) 
+[**github**](https://github.com/mrochk) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  [**scholar**](https://scholar.google.com/citations?user=d8uMxiYAAAAJ) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [**blog**](https://mrochk.github.io/blog.html)
 </center>
 
 ***

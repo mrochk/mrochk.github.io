@@ -4,6 +4,7 @@ author: Maxime Rochkoulets
 ---
 
 Sources:
+
 - [https://arxiv.org/abs/2104.09864](https://arxiv.org/abs/2104.09864)
 
 When we process sequences, the order of tokens matters (e.g words in a sentence).
