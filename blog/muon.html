@@ -170,7 +170,7 @@ window.Quarto = {
 </ul>
 <p><br></p>
 <p>Let <span class="math inline">\(\theta \in \mathbb{R}^d\)</span> be the parameters of our neural network.</p>
-<p>We have a differentiable loss function <span class="math inline">\(\mathcal{L}: \mathbb{R}^d \to \mathbb{R}\)</span> that tells us how good our model performs. We aim to successively update <span class="math inline">\(\theta^{(0)} \to \theta^{(0)} \to \dots\)</span> such that it minimizes <span class="math inline">\(\mathcal{L}(\theta)\)</span>.</p>
+<p>We have a differentiable loss function <span class="math inline">\(\mathcal{L}: \mathbb{R}^d \to \mathbb{R}\)</span> that tells us how good our model performs. We aim to successively update <span class="math inline">\(\theta^{(0)} \to \theta^{(1)} \to \dots \to \theta^{(T)}\)</span> such that <span class="math inline">\(\theta^{(T)} \approx \underset{\theta}{\operatorname{argmin}}{\mathcal{L}(\theta)}\)</span>.</p>
 <p>Let <span class="math inline">\(\Delta \theta\)</span> denote such an update to our parameters. Each update is as follows <span class="math display">\[
 \theta^{(t+1)} \gets \theta^{(t)} + \Delta \theta^{(t)}.
 \]</span></p>

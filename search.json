@@ -67,7 +67,7 @@
     "href": "blog/muon.html",
     "title": "Muon",
     "section": "",
-    "text": "Sources:\n\nwww.lakernewhouse.com/writing/muon-1\nwww.lakernewhouse.com/writing/muon-2\nMuon is Scalable for LLM Training\n\n\nLet \\(\\theta \\in \\mathbb{R}^d\\) be the parameters of our neural network.\nWe have a differentiable loss function \\(\\mathcal{L}: \\mathbb{R}^d \\to \\mathbb{R}\\) that tells us how good our model performs. We aim to successively update \\(\\theta^{(0)} \\to \\theta^{(0)} \\to \\dots\\) such that it minimizes \\(\\mathcal{L}(\\theta)\\).\nLet \\(\\Delta \\theta\\) denote such an update to our parameters. Each update is as follows \\[\n\\theta^{(t+1)} \\gets \\theta^{(t)} + \\Delta \\theta^{(t)}.\n\\]\nNow, how to find a good update \\(\\Delta \\theta\\) given our current parameters and gradients only ?"
+    "text": "Sources:\n\nwww.lakernewhouse.com/writing/muon-1\nwww.lakernewhouse.com/writing/muon-2\nMuon is Scalable for LLM Training\n\n\nLet \\(\\theta \\in \\mathbb{R}^d\\) be the parameters of our neural network.\nWe have a differentiable loss function \\(\\mathcal{L}: \\mathbb{R}^d \\to \\mathbb{R}\\) that tells us how good our model performs. We aim to successively update \\(\\theta^{(0)} \\to \\theta^{(1)} \\to \\dots \\to \\theta^{(T)}\\) such that \\(\\theta^{(T)} \\approx \\underset{\\theta}{\\operatorname{argmin}}{\\mathcal{L}(\\theta)}\\).\nLet \\(\\Delta \\theta\\) denote such an update to our parameters. Each update is as follows \\[\n\\theta^{(t+1)} \\gets \\theta^{(t)} + \\Delta \\theta^{(t)}.\n\\]\nNow, how to find a good update \\(\\Delta \\theta\\) given our current parameters and gradients only ?"
   },
   {
     "objectID": "index.html",
