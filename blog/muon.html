@@ -210,10 +210,26 @@ window.Quarto = {
 <p>We saw how two different constraints/penalties recover two well-known optimizers. Let’s move on to Muon.</p>
 <hr>
 <p>First, Muon is an optimizer for hidden matrix parameters (that map dense activations to dense activations). Intuitively this probably means that the constraint it uses is only defined for matrices.</p>
+<p>From now on we will focus on the update of a hidden matrix <span class="math inline">\(\mathbf{W}\)</span> rather than the full set of parameters <span class="math inline">\(\theta\)</span>. The non-matrix parameters (e.g.&nbsp;biases) are typically optimized using Adam.</p>
 <p>A matrix is a linear transformation, it takes a vector and transforms it (rotates and/or stretches it). The constraint we want to use should be about <em>what matrices do</em> rather than just looking at their individual entries.</p>
 <p>First, let’s define a measure of size for a vector <span class="math inline">\(\mathbf{x} \in \mathbb{R}^{d}\)</span>. We will use the RMS norm <span class="math display">\[
 \Vert \mathbf{x} \Vert_{\text{RMS}} = \sqrt{ \frac{1}{d} \sum_{i=1}^{d}{x_i^2}}
-\]</span> which is an <span class="math inline">\(l_2\)</span> norm that is invariant to the number of the dimensions of our vector.</p>
+\]</span> which basically is an <span class="math inline">\(l_2\)</span> norm that is invariant to the number of the dimensions of our vector.</p>
+<p>We can now define our measure of matrix size: the RMS-to-RMS norm <span class="math display">\[
+\Vert \mathbf{W} \Vert_{\text{RMS} \to \text{RMS}} = \max(\{ \Vert \mathbf{Wx} \Vert_{\text{RMS}} : \Vert \mathbf{x} \Vert_{\text{RMS}} = 1 \}).
+\]</span></p>
+<p>This norm measures the maximum stretch performed by the matrix <span class="math inline">\(\mathbf{W}\)</span>. So it is actually a measure of what the matrix does, rather than what it contains. Interesting.</p>
+<p>Let us once again formulate our problem, using our new constraint <span class="math display">\[
+\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \nabla_{\mathbf{W}}\mathcal{L}(\theta)^T \Delta\mathbf{W} \quad \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1.
+\]</span></p>
+<p>We have defined what “one step” was, this also means that the learning rate can be interpreted as: each step changes the layer’s output by at most about <span class="math inline">\(lr\)</span>% of its typical size.</p>
+<p>For ease of notation let <span class="math inline">\(\mathbf{G} = \nabla_{\mathbf{W}}\mathcal{L}(\theta)\)</span>.</p>
+<p>The solution to the problem above is to <em>orthogonalize</em> <span class="math inline">\(\mathbf{G}\)</span>. This means setting its singular values to be all equal to 1 <span class="math display">\[
+\mathbf{G} = \mathbf{U\SigmaV}^T \to \mathbf{UIV}^T = \mathbf{UV}^T.
+\]</span></p>
+<p>And the Muon update rule is <span class="math display">\[
+\Delta \mathbf{W} \gets -lr \cdot \sqrt{\frac{\text{out}}{\text{in}}} \cdot \mathbf{UV}^T.
+\]</span></p>
 
 
 
