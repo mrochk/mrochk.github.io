@@ -198,6 +198,15 @@ window.Quarto = {
 \]</span> the plain SGD update.</p>
 <p>One thing we can observe with SGD is that the step we take depends on the magnitude of the gradient. This makes sense: if the slope is very steep, it is reasonable to take a larger step. However, recall that this gradient information is only valid over a short distance: we can not trust it over large distances. I’m pretty sure there are many other reasons why this is bad in loss landscape where the curvature varies a lot.</p>
 <p><img src="../images/loss-landscape.png" class="img-fluid" style="width:50.0%"></p>
+<p>Let us try something different <span class="math display">\[
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta \text{ subject to } \Vert \Delta \theta \Vert_{\infty} \leq lr,
+\]</span> where the <span class="math inline">\(l_{\infty}\)</span>-norm is <span class="math inline">\(\underset{i}{\max} \vert \Delta\theta_i \vert\)</span>. This yields <a href="https://arxiv.org/abs/1802.04434">signSGD</a> <span class="math display">\[
+\Delta \theta \gets -lr \cdot \operatorname{sign}(\nabla_{\theta} \mathcal{L}(\theta)).
+\]</span></p>
+<p>This is interesting, because this time the update does not depend on the gradient magnitude. This can be seen as a simple way of bypassing the issues mentioned above about plain SGD: just take a fixed step no matter what the underlying gradient is.</p>
+<p>We saw how two different constraints/penalties recover two well-known optimizers. Let’s finally move on to Muon.</p>
+<hr>
+<p>First, Muon is an optimizer for hidden matrix parameters (that map dense activations to dense activations). This probably means that the constraint it uses is only defined for matrices.</p>
 
 
 
