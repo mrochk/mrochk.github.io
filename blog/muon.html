@@ -190,6 +190,14 @@ window.Quarto = {
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta.
 \]</span></p>
 <p>There is an issue here: because this problem linear and unconstrained, no minimizer exists. We therefore need to add a constraint. <strong>Very neatly, different constraints on <span class="math inline">\(\Delta \theta\)</span> will allow us to recover many first-order methods, Muon included.</strong></p>
+<p>Another way of putting it is to say that we have to pick a mesure of what “one step” is.</p>
+<p>For example, let’s add the following penalty <span class="math display">\[
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta + \frac{1}{2 \cdot lr} \Vert \Delta \theta \Vert_2^2,
+\]</span> setting the derivative to 0 and solving for <span class="math inline">\(\Delta \theta\)</span> yields <span class="math display">\[
+\Delta \theta \gets -lr \cdot \nabla_{\theta} \mathcal{L}(\theta),
+\]</span> the plain SGD update.</p>
+<p>One thing we can observe with SGD is that the step we take depends on the magnitude of the gradient. This makes sense: if the slope is very steep, it is reasonable to take a larger step. However, recall that this gradient information is only valid over a short distance: we can not trust it over large distances. I’m pretty sure there are many other reasons why this is bad in loss landscape where the curvature varies a lot.</p>
+<p><img src="../images/loss-landscape.png" class="img-fluid"></p>
 
 
 
