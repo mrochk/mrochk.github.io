@@ -7,23 +7,18 @@ Sources:
 
 - [www.lakernewhouse.com/writing/muon-1](https://www.lakernewhouse.com/writing/muon-1)
 - [www.lakernewhouse.com/writing/muon-2](https://www.lakernewhouse.com/writing/muon-2)
+- [Muon is Scalable for LLM Training](https://arxiv.org/abs/2502.16982)
 
 <br>
 
 Let $\theta \in \mathbb{R}^d$ be the parameters of our neural network. 
 
-We have a differentiable loss function $\mathcal{L}: \mathbb{R}^d \to \mathbb{R}$ that tells us how good our model performs.
+We have a differentiable loss function $\mathcal{L}: \mathbb{R}^d \to \mathbb{R}$ that tells us how good our model performs. We aim to successively update $\theta^{(0)} \to \theta^{(0)} \to \dots$ such that it minimizes $\mathcal{L}(\theta)$.
 
-We want to find an update $\Delta \theta$, such that $\mathcal{L}(\theta + \Delta \theta) \leq \mathcal{L}(\theta)$.
-
-In other words, we want to update our parameters $\theta^{(t+1)} \gets \theta^{(t)} + \Delta \theta^{(t)}$.
-
-This can be formulated as
+Let $\Delta \theta$ denote such an update to our parameters. Each update is as follows
 $$
-\underset{\Delta \theta}{\operatorname{argmin}} \mathcal{L}(\theta + \Delta \theta)
+\theta^{(t+1)} \gets \theta^{(t)} + \Delta \theta^{(t)}.
 $$
 
-A Taylor expansion yields
-$$
-\mathcal{L}(\theta + \Delta \theta) = \mathcal{L}(\theta) + (\nabla_{\theta} \mathcal{L}(\theta))^T\Delta \theta + 
-$$
+Now, how to find a good update $\Delta \theta$ given our current parameters and gradients only ?
+
