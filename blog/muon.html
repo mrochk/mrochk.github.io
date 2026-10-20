@@ -182,14 +182,14 @@ window.Quarto = {
 \]</span></p>
 <p>In first-order methods (such as SGD, Adam and Muon) we only keep the first derivative, that is we only look at the slope <span class="math display">\[
 \mathcal{L}(\theta + \Delta\theta) \approx \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta,
-\]</span> looking at the curvature (Hessian) is very useful, however for large neural networks it is too computationally expensive (<span class="math inline">\(\mathbf{H} \in \mathbb{R}^{d \times d}\)</span>).</p>
+\]</span> looking at the curvature (Hessian) is very useful, however for large neural networks it is too computationally expensive (<span class="math inline">\(\nabla^2_{\theta}\mathcal{L}(\theta) = \mathbf{H} \in \mathbb{R}^{d \times d}\)</span>).</p>
 <p>At their core, gradient-based approaches have to manage the tension between taking a sufficiently large step in the direction of the slope, and not taking a step that is too large given that the slope only provides limited information.</p>
 <p>Let’s continue looking at our finding-the-update problem, which we can now express as <span class="math display">\[
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta,
-\]</span> and note that we can simply discard the constant <span class="math display">\[
+\]</span> and note that we can discard the constant, giving us <span class="math display">\[
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta.
 \]</span></p>
-<p>There is an issue here: because this is unconstrained, the solution is to the problem above is to take an infinitely large step i.e.&nbsp;<span class="math inline">\((\Delta \theta)_i \gets -\operatorname{sign}(\nabla_{\theta}\mathcal{L}(\theta)_i) \cdot \infty\)</span>.</p>
+<p>There is an issue here: because this problem linear and unconstrained, no minimizer exists. We therefore need to add a constraint. <strong>Very neatly, different constraints on <span class="math inline">\(\Delta \theta\)</span> will allow us to recover many first-order methods, Muon included.</strong></p>
 
 
 
