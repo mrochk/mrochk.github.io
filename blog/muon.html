@@ -169,6 +169,7 @@ window.Quarto = {
 <li><a href="https://arxiv.org/abs/2502.16982">Muon is Scalable for LLM Training</a></li>
 </ul>
 <p><br></p>
+<p><em>This post does not talk about the Newton-Schulz orthogonalization in detail, just about the general intuitions behind Muon.</em></p>
 <p>Let <span class="math inline">\(\theta \in \mathbb{R}^d\)</span> be the parameters of our neural network.</p>
 <p>We have a differentiable loss function <span class="math inline">\(\mathcal{L}: \mathbb{R}^d \to \mathbb{R}\)</span> that tells us how good our model performs.</p>
 <p>We want to successively update <span class="math inline">\(\theta^{(0)} \to \theta^{(1)} \to \dots \to \theta^{(T)}\)</span> such that <span class="math inline">\(\theta^{(T)} \approx \underset{\theta}{\operatorname{argmin}}{\mathcal{L}(\theta)}\)</span> (or at least <span class="math inline">\(\mathcal{L}(\theta^{(0)}) \geq \mathcal{L}(\theta^{(T)})\)</span>).</p>
@@ -200,7 +201,7 @@ window.Quarto = {
 <p>One thing we can observe with SGD is that the step we take depends on the magnitude of the gradient. This makes sense: if the slope is steep, it is reasonable to take a larger step to converge faster. However, recall that this gradient information is only valid over a short distance, we can not trust it over large distances. (Probably there are many other reasons why this is bad in chaotic loss landscapes.)</p>
 <p><img src="../images/loss-landscape.png" class="img-fluid" style="width:25.0%"></p>
 <p>Let us try something different <span class="math display">\[
-\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta \qud \text{ subject to } \Vert \Delta \theta \Vert_{\infty} \leq lr,
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta \quad \text{ subject to } \Vert \Delta \theta \Vert_{\infty} \leq lr,
 \]</span> where the <span class="math inline">\(l_{\infty}\)</span> norm is defined as <span class="math inline">\(\underset{i}{\max} \vert \Delta\theta_i \vert\)</span>.</p>
 <p>This yields <a href="https://arxiv.org/abs/1802.04434">signSGD</a> <span class="math display">\[
 \Delta \theta \gets -lr \cdot \operatorname{sign}(\nabla_{\theta} \mathcal{L}(\theta)).
@@ -208,7 +209,11 @@ window.Quarto = {
 <p>This is interesting, because now the update does not depend on gradient magnitude. This can be seen as a simple way of bypassing the issues mentioned above about plain SGD: just take a fixed step no matter what the underlying gradient is.</p>
 <p>We saw how two different constraints/penalties recover two well-known optimizers. Let’s move on to Muon.</p>
 <hr>
-<p>First, Muon is an optimizer for hidden matrix parameters (that map dense activations to dense activations). Intuitivelym this probably means that the constraint it uses is only defined for matrices.</p>
+<p>First, Muon is an optimizer for hidden matrix parameters (that map dense activations to dense activations). Intuitively this probably means that the constraint it uses is only defined for matrices.</p>
+<p>A matrix is a linear transformation, it takes a vector and transforms it (rotates and/or stretches it). The constraint we want to use should be about <em>what matrices do</em> rather than just looking at their individual entries.</p>
+<p>First, let’s define a measure of size for a vector <span class="math inline">\(\mathbf{x} \in \mathbb{R}^{d}\)</span>. We will use the RMS norm <span class="math display">\[
+\Vert \mathbf{x} \Vert_{\text{RMS}} = \sqrt{ \frac{1}{d} \sum_{i=1}^{d}{x_i^2}}
+\]</span> which is an <span class="math inline">\(l_2\)</span> norm that is invariant to the number of the dimensions of our vector.</p>
 
 
 
