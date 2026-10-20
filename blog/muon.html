@@ -197,7 +197,7 @@ window.Quarto = {
 \Delta \theta \gets -lr \cdot \nabla_{\theta} \mathcal{L}(\theta),
 \]</span> the plain SGD update.</p>
 <p>One thing we can observe with SGD is that the step we take depends on the magnitude of the gradient. This makes sense: if the slope is very steep, it is reasonable to take a larger step. However, recall that this gradient information is only valid over a short distance: we can not trust it over large distances. I’m pretty sure there are many other reasons why this is bad in loss landscape where the curvature varies a lot.</p>
-<p><img src="../images/loss-landscape.png" class="img-fluid"></p>
+<p><img src="../images/loss-landscape.png" class="img-fluid" style="width:50.0%"></p>
 
 
 
