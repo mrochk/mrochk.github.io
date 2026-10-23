@@ -6,7 +6,7 @@ title: "Blog"
 
 ## October 2026
 
-### [muon](./blog/muon.qmd)
+### [the muon optimizer](./blog/muon.qmd)
 
 ## September 2026
 
