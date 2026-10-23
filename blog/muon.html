@@ -233,13 +233,14 @@ window.Quarto = {
 \Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{V}_{\mathbf{G}} \mathbf{\Sigma}_{\mathbf{G}} \mathbf{U}^T_{\mathbf{G}} \mathbf{U}_{\Delta\mathbf{W}} \mathbf{\Sigma}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}} \quad \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1.
 \]</span> and note that <span class="math inline">\(\text{subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1\)</span> now simply means <span class="math inline">\(\text{subject to } \mathbf{\Sigma}_{\Delta\mathbf{W}} = I\)</span>. Indeed, if we have a “budget” of at most 1 for each singular value, we might as well use it fully. This simplifies the problem <span class="math display">\[
 \Delta\mathbf{W} \gets \underset{\mathbf{U}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}}}{\operatorname{argmin}} \mathbf{V}_{\mathbf{G}} \mathbf{\Sigma}_{\mathbf{G}} \mathbf{U}^T_{\mathbf{G}} \mathbf{U}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}} \quad \text{ subject to } \mathbf{U}_{\Delta\mathbf{W}}, \mathbf{V}^T_{\Delta\mathbf{W}} \text{ orthogonal}.
-\]</span> and the solution to this is to maximize alignment, that is <span class="math inline">\(\Delta \mathbf{W} \gets -\mathbf{U}_{\mathbf{G}}\mathbf{V}^T_{\mathbf{G}}\)</span></p>
-<p>The solution to the problem above is to <em>orthogonalize</em> <span class="math inline">\(\mathbf{G}\)</span>. This means setting its singular values to be equal to 1 <span class="math display">\[
-\mathbf{G} = \mathbf{U \Sigma V}^T \to \mathbf{UIV}^T = \mathbf{UV}^T.
+\]</span> and the solution to this is to maximize alignment, that is <span class="math inline">\(\mathbf{U}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}} \gets -\mathbf{U}_{\mathbf{G}}\mathbf{V}^T_{\mathbf{G}}\)</span>. The last step is re-multiply by the factor <span class="math inline">\(\sqrt{\frac{\text{in}}{\text{out}}}\)</span> <strong>giving us the Muon update rule</strong> <span class="math display">\[
+\Delta \mathbf{W} \gets -lr \cdot \frac{\text{in}}{\text{out}} \cdot \mathbf{U}_{\mathbf{G}}\mathbf{V}^T_{\mathbf{G}}.
 \]</span></p>
-<p>And the Muon update rule is <span class="math display">\[
-\Delta \mathbf{W} \gets -lr \cdot \sqrt{\frac{\text{out}}{\text{in}}} \cdot \mathbf{UV}^T.
-\]</span></p>
+<p>The operation that consists in setting the singular values of <span class="math inline">\(\mathbf{G}\)</span> to be all equal to 1 is called <em>orthogonalization</em>.</p>
+<hr>
+<p>However, computing the SVD for each layer at each iteration would be prohibitively expensive. Instead, Jeremy Bernstein found a way to do this in a much more efficient manner.</p>
+<p>The method is called Newton-Schulz orthogonalization.</p>
+<p><img src="../images/newton-schulz.png" class="img-fluid"></p>
 
 
 
