@@ -229,13 +229,9 @@ window.Quarto = {
 \]</span> and let us then rewrite our problem using this new insight <span class="math display">\[
 \Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{G}^T \Delta\mathbf{W} \quad \text{ subject to } \sigma_{\max} \leq 1.
 \]</span></p>
-<p>Okay so, what should <span class="math inline">\(\Delta \mathbf{W}\)</span> be ? Let’s compute the SVD of <span class="math inline">\(\mathbf{G} = \mathbf{U \Sigma V}^T = \sum_{i=1}^{\min(\text{in}, \text{out})}{\sigma_i \cdot \mathbf{u}_i \mathbf{v}_i^T}\)</span> and replace it in our problem, and look at the solution for a single term <span class="math display">\[
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \sigma \cdot \mathbf{u}^T \Delta\mathbf{W} \mathbf{v} \quad \text{ subject to } \sigma_{\max} \leq 1,
-\]</span> now plugging in the SVD of <span class="math inline">\(\Delta \mathbf{W}\)</span> <span class="math display">\[
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \sigma_G \cdot \mathbf{u}_G^T (\mathbf{U}_W\mathbf{\Sigma}_W\mathbf{V}^T_W) \mathbf{v}_G \quad \text{ subject to } \sigma_{\max} \leq 1,
-\]</span> we know that we have a “budget” of 1 for each singular value of <span class="math inline">\(\Delta \mathbf{W}\)</span>, therefore we use it (<span class="math inline">\(\Sigma_W \to I\)</span>) <span class="math display">\[
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \sigma_G \cdot \mathbf{u}_G^T (\mathbf{U}_W\mathbf{V}^T_W) \mathbf{v}_G \quad \text{ subject to } \sigma_{\max} \leq 1,
-\]</span></p>
+<p>Now, let us replace both <span class="math inline">\(\mathbf{G}\)</span> and <span class="math inline">\(\mathbf{\Delta W}\)</span> by their singular value decompositions <span class="math display">\[
+\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{V}_{\mathbf{G}} \mathbf{\Sigma}_{\mathbf{G}} \mathbf{U}^T_{\mathbf{G}} \mathbf{U}_{\Delta\mathbf{W}} \mathbf{\Sigma}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}} \quad \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1.
+\]</span> and note that <span class="math inline">\(\text{subject to} \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1\)</span> now simply means <span class="math inline">\(\text{subject to} \mathbf{\Sigma}_{\Delta\mathbf{W}} = I\)</span>.</p>
 <p>The solution to the problem above is to <em>orthogonalize</em> <span class="math inline">\(\mathbf{G}\)</span>. This means setting its singular values to be equal to 1 <span class="math display">\[
 \mathbf{G} = \mathbf{U \Sigma V}^T \to \mathbf{UIV}^T = \mathbf{UV}^T.
 \]</span></p>
