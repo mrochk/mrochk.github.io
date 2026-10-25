@@ -2,14 +2,14 @@
   {
     "objectID": "blog.html#october-2026",
     "href": "blog.html#october-2026",
-    "title": "Blog (AI-free writing)",
+    "title": "Blog (AI-Free Writing)",
     "section": "October 2026",
     "text": "October 2026\n\nthe muon optimizer"
   },
   {
     "objectID": "blog.html#september-2026",
     "href": "blog.html#september-2026",
-    "title": "Blog (AI-free writing)",
+    "title": "Blog (AI-Free Writing)",
     "section": "September 2026",
     "text": "September 2026\n\nrotary positional embeddings"
   },
@@ -67,7 +67,7 @@
     "href": "index.html",
     "title": "Maxime Rochkoulets",
     "section": "",
-    "text": "I’m Maxime, an AI researcher working in Singapore (Genome Institute of Singapore).\nPrior to that, I obtained my masters in computer science from KU Leuven.\nMy interests in machine learning lie mainly in scalable, non-supervised approaches (such as SSL and RL), but also NeuroAI and mechanistic interpretability.\nI am open to PhD opportunities (starting in September 2027), so please do not hesitate to contact me.\n\n\ngithub             scholar             blog"
+    "text": "I’m Maxime, an AI researcher working in Singapore (Genome Institute of Singapore).\nPrior to that, I obtained my masters in computer science from KU Leuven.\nMy interests in machine learning lie mainly in scalable, non-supervised approaches (such as SSL and RL), but also NeuroAI and mechanistic interpretability.\n\n\ngithub             scholar             blog"
   },
   {
     "objectID": "contact.html",
