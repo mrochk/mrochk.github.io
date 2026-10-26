@@ -176,30 +176,29 @@ window.Quarto = {
 <p>Let <span class="math inline">\(\Delta \theta\)</span> denote an update to our parameters (a small change). Updates are applied as follows <span class="math display">\[
 \theta^{(t+1)} \gets \theta^{(t)} + \Delta \theta.
 \]</span></p>
-<p>We can thus frame the problem of finding <em>good</em> update <span class="math inline">\(\Delta \theta\)</span> as <span class="math display">\[
+<p>We can thus frame the problem of finding a <em>good</em> update <span class="math inline">\(\Delta \theta\)</span> as <span class="math display">\[
 \Delta\theta^{(t)} \gets \underset{\Delta \theta}{\operatorname{argmin}}{\mathcal{L}(\theta^{(t)} + \Delta\theta)}.
 \]</span></p>
 <p>A Taylor expansion yields <span class="math display">\[
 \mathcal{L}(\theta + \Delta\theta) = \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta + \frac{1}{2} \Delta\theta^T \cdot \nabla^2_{\theta}\mathcal{L}(\theta) \cdot \Delta\theta + \dots
 \]</span></p>
-<p>In first-order methods (such as SGD, Adam and Muon) we only keep the first derivative, that is we only look at the slope <span class="math display">\[
-\mathcal{L}(\theta + \Delta\theta) \approx \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta,
-\]</span> looking at the curvature (Hessian) is very useful, however for large neural networks it is too computationally expensive (<span class="math inline">\(\nabla^2_{\theta}\mathcal{L}(\theta) = \mathbf{H} \in \mathbb{R}^{d \times d}\)</span>).</p>
-<p>At their core, gradient-based approaches have to manage the tension between taking a sufficiently large step in the direction of the slope, and not taking a step that is too large given that the slope only provides limited information.</p>
-<p>Let’s continue looking at our finding-the-update problem, which we can now express as <span class="math display">\[
-\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta,
+<p>In first-order methods (such as SGD, Adam and Muon) we only use gradient information (we only look at the slope) <span class="math display">\[
+\mathcal{L}(\theta + \Delta\theta) \approx \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta,
+\]</span> looking at the curvature (Hessian) is very useful, however, for large neural networks with millions of parameters it is too computationally expensive (<span class="math inline">\(\nabla^2_{\theta}\mathcal{L}(\theta) = \mathbf{H} \in \mathbb{R}^{d \times d}\)</span>).</p>
+<p>At their core, gradient-based approaches have to manage the tension between (A) taking a sufficiently large step in the direction of the slope, and (B) not taking a step that too far given that the slope only provides limited information.</p>
+<p>Okat, let’s continue looking at our finding-the-update problem, which we can now express as <span class="math display">\[
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta,
 \]</span> and note that we can discard the constant, giving us <span class="math display">\[
-\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta.
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta.
 \]</span></p>
-<p>There is an issue here: because this problem linear and unconstrained, no minimizer exists. We therefore need to add a constraint. <strong>Very neatly, different constraints on <span class="math inline">\(\Delta \theta\)</span> will allow us to recover many first-order methods, Muon included.</strong></p>
-<p>Another way of putting it is to say that we have to pick a mesure of what “one step” is.</p>
-<p>For example, let’s add the following penalty <span class="math display">\[
-\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta + \frac{1}{2 \cdot lr} \Vert \Delta \theta \Vert_2^2,
+<p>There is an issue here: because this proble is linear and unconstrained, no minimizer exists. We must add a constraint. <strong>Interestingly, different constraints (or penalties) on <span class="math inline">\(\Delta \theta\)</span> will allow us to recover many first-order methods, including Muon.</strong> Another way of putting it (the constraint) is to say that we have to pick a mesure of what “one step” is.</p>
+<p>To illustrate what I mean, let’s add the following penalty <span class="math display">\[
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta + \frac{1}{2 \cdot lr} \Vert \Delta \theta \Vert_2^2,
 \]</span> setting the derivative to 0 and solving for <span class="math inline">\(\Delta \theta\)</span> yields <span class="math display">\[
 \Delta \theta \gets -lr \cdot \nabla_{\theta} \mathcal{L}(\theta),
-\]</span> the plain SGD update.</p>
-<p>One thing we can observe with SGD is that the step we take depends on the magnitude of the gradient. This makes sense: if the slope is steep, it is reasonable to take a larger step to converge faster. However, recall that this gradient information is only valid over a short distance, we can not trust it over large distances. (Probably there are many other reasons why this is bad in chaotic loss landscapes.)</p>
-<p><img src="../images/loss-landscape.png" class="img-fluid" style="width:25.0%"></p>
+\]</span> the classic SGD update.</p>
+<p>One thing we can observe with SGD is that the step we take depends on the magnitude of the gradient. This makes sense: if the slope is steep, it seems reasonable to take a larger step, to converge faster. However, recall that this gradient information is only valid over a short distance, and that we can not trust it over large distances. (Probably there are many other reasons why this is bad in chaotic loss landscapes.)</p>
+<p><img src="../images/loss-landscape.png" class="img-fluid" style="width:30.0%"></p>
 <p>Let us try something different <span class="math display">\[
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta \quad \text{ subject to } \Vert \Delta \theta \Vert_{\infty} \leq lr,
 \]</span> where the <span class="math inline">\(l_{\infty}\)</span> norm is defined as <span class="math inline">\(\underset{i}{\max} \vert \Delta\theta_i \vert\)</span>.</p>
