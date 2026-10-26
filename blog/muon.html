@@ -205,28 +205,30 @@ window.Quarto = {
 <p>Thsi time, solving for the update yields <a href="https://arxiv.org/abs/1802.04434">signSGD</a> <span class="math display">\[
 \Delta \theta \gets -lr \cdot \operatorname{sign}\left(\nabla_{\theta} \mathcal{L}(\theta)\right).
 \]</span></p>
-<p>This is interesting, because now the update does not depend on gradient magnitude. This can be seen as a simple way of bypassing the issues mentioned above about plain SGD: just take a fixed step no matter what the underlying gradient is.</p>
-<p>We saw how two different constraints/penalties recover two well-known optimizers. Let’s move on to Muon.</p>
+<p>This is interesting, because now the update does not depend on gradient magnitude, only on its direction. This can be seen as a simple (<em>extreme</em>) way of bypassing the issues mentioned above: just take a fixed step no matter what the underlying gradient is.</p>
+<p>We saw how two different constraints/penalties recover two well-known optimizers, and we discussed the idea of setting a measure of what one-step is. We can move on to Muon.</p>
 <hr>
-<p>First, Muon is an optimizer for hidden matrix parameters (that map dense activations to dense activations). Intuitively this probably means that the constraint it uses is only defined for matrices.</p>
-<p>From now on we will focus on the update of a hidden matrix <span class="math inline">\(\mathbf{W} \in \mathbb{R}^{\text{in} \times \text{out}}\)</span> rather than the full set of parameters <span class="math inline">\(\theta\)</span>. The non-matrix parameters (e.g.&nbsp;biases) are typically optimized using Adam.</p>
-<p>A matrix is a linear transformation, it takes a vector and transforms it (rotates and/or stretches it). The constraint we want to use should be about <em>what matrices do</em> rather than just looking at their individual entries.</p>
-<p>First, let’s define a measure of size for a vector <span class="math inline">\(\mathbf{x} \in \mathbb{R}^{d}\)</span>. We will use the RMS norm <span class="math display">\[
+<p>At its core, Muon is about setting a different constraint in our update problem (such like signSGD used the <span class="math inline">\(l_{\infty}\)</span>) norm).</p>
+<p>First, Muon is an optimizer for hidden matrix parameters <em>only</em> (linear layers that map dense activations to dense activations). <span class="math inline">\(\to\)</span> This probably means that the constraint it uses is only defined for matrices.</p>
+<p>From now on we will instead focus on the update of a hidden matrix <span class="math inline">\(\mathbf{W} \in \mathbb{R}^{\text{out} \times \text{in}}\)</span>. For convenience let’s denotes its gradient as <span class="math inline">\(\mathbf{G} = \nabla_{\mathbf{W}} \mathcal{L}(\theta)\)</span>.</p>
+<p>The non-matrix parameters (e.g.&nbsp;biases) are typically optimized using AdamW.</p>
+<p>Okay so, what is a matrix ? A matrix is a linear transformation, it takes a vector and transforms it. The constraint we want to use is about <em>what matrices do</em> rather than just looking at their individual entries.</p>
+<p>Let’s begin by defining a measure of size for a vector <span class="math inline">\(\mathbf{x} \in \mathbb{R}^{d}\)</span>.</p>
+<p>We will use the RMS norm <span class="math display">\[
 \Vert \mathbf{x} \Vert_{\text{RMS}} = \sqrt{ \frac{1}{d} \sum_{i=1}^{d}{x_i^2}}
 \]</span> which basically is an <span class="math inline">\(l_2\)</span> norm that is invariant to the number of the dimensions of our vector.</p>
-<p>We can now define our measure of matrix size: the RMS-to-RMS norm <span class="math display">\[
+<p>We can now define our measure of matrix “size” <span class="math inline">\(\to\)</span> the RMS-to-RMS norm <span class="math display">\[
 \Vert \mathbf{W} \Vert_{\text{RMS} \to \text{RMS}} = \max(\{ \Vert \mathbf{Wx} \Vert_{\text{RMS}} : \Vert \mathbf{x} \Vert_{\text{RMS}} = 1 \}).
 \]</span></p>
-<p>For ease of notation let <span class="math inline">\(\mathbf{G} = \nabla_{\mathbf{W}}\mathcal{L}(\theta)\)</span>.</p>
-<p>This norm measures the maximum stretch performed by the matrix <span class="math inline">\(\mathbf{W}\)</span>. So it is actually a measure of what the matrix does, rather than what it contains. Interesting.</p>
-<p>Let us once again formulate our problem, using our new constraint <span class="math display">\[
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{G}^T \Delta\mathbf{W} \quad \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1.
+<p>This norm measures the maximum stretch performed by the matrix <span class="math inline">\(\mathbf{W}\)</span>. So it is a measure of what the matrix does, rather than the individual entries it contains. Nice.</p>
+<p>Let us (once again) re-formulate our problem using our new constraint <span class="math display">\[
+\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{G}^T \cdot \Delta\mathbf{W} \quad \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1.
 \]</span></p>
-<p>We have defined what “one step” was, this also means that the learning rate can be interpreted as: each step changes the layer’s output by at most about <span class="math inline">\(lr\)</span>% of its typical size.</p>
+<p>We have just defined what “one step” was, this also means that the learning rate can be interpreted <em>each step changes the layer’s output by at most about <span class="math inline">\(lr\)</span>% of its typical size</em>.</p>
 <p>The RMS-to-RMS norm can be rewritten in terms of the matrix spectral norm <span class="math inline">\(\Vert \mathbf{W} \Vert_2 = \sigma_{\max}\)</span> as follows <span class="math display">\[
-\Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} = \sqrt{\frac{\text{in}}{\text{out}}} \cdot \Vert \mathbf{W} \Vert_2,
-\]</span> and let us then rewrite our problem using this new insight <span class="math display">\[
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{G}^T \Delta\mathbf{W} \quad \text{ subject to } \sigma_{\max} \leq 1.
+\Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} = \sqrt{\frac{\text{in}}{\text{out}}} \cdot \Vert \Delta \mathbf{W} \Vert_2,
+\]</span> we rewrite our problem using this spectral norm <span class="math display">\[
+\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{G}^T \cdot \Delta\mathbf{W} \quad \text{ subject to } \sigma_{\max} \leq \frac{1}{\sqrt{\text{in} / \text{out}}]}.
 \]</span></p>
 <p>Now, let us replace both <span class="math inline">\(\mathbf{G}\)</span> and <span class="math inline">\(\mathbf{\Delta W}\)</span> by their singular value decompositions <span class="math display">\[
 \Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{V}_{\mathbf{G}} \mathbf{\Sigma}_{\mathbf{G}} \mathbf{U}^T_{\mathbf{G}} \mathbf{U}_{\Delta\mathbf{W}} \mathbf{\Sigma}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}} \quad \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1.
