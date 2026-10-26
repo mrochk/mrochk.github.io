@@ -199,11 +199,11 @@ window.Quarto = {
 \]</span> the classic SGD update.</p>
 <p>One thing we can observe with SGD is that the step we take depends on the magnitude of the gradient. This makes sense: if the slope is steep, it seems reasonable to take a larger step, to converge faster. However, recall that this gradient information is only valid over a short distance, and that we can not trust it over large distances. (Probably there are many other reasons why this is bad in chaotic loss landscapes.)</p>
 <p><img src="../images/loss-landscape.png" class="img-fluid" style="width:30.0%"></p>
-<p>Let us try something different <span class="math display">\[
-\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta \quad \text{ subject to } \Vert \Delta \theta \Vert_{\infty} \leq lr,
+<p>Let’s try something different <span class="math display">\[
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta \;\; \text{ subject to } \Vert \Delta \theta \Vert_{\infty} \leq lr,
 \]</span> where the <span class="math inline">\(l_{\infty}\)</span> norm is defined as <span class="math inline">\(\underset{i}{\max} \vert \Delta\theta_i \vert\)</span>.</p>
-<p>This yields <a href="https://arxiv.org/abs/1802.04434">signSGD</a> <span class="math display">\[
-\Delta \theta \gets -lr \cdot \operatorname{sign}(\nabla_{\theta} \mathcal{L}(\theta)).
+<p>Thsi time, solving for the update yields <a href="https://arxiv.org/abs/1802.04434">signSGD</a> <span class="math display">\[
+\Delta \theta \gets -lr \cdot \operatorname{sign}\left(\nabla_{\theta} \mathcal{L}(\theta)\right).
 \]</span></p>
 <p>This is interesting, because now the update does not depend on gradient magnitude. This can be seen as a simple way of bypassing the issues mentioned above about plain SGD: just take a fixed step no matter what the underlying gradient is.</p>
 <p>We saw how two different constraints/penalties recover two well-known optimizers. Let’s move on to Muon.</p>
