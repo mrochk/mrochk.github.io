@@ -19,115 +19,118 @@ We have a differentiable loss function $\mathcal{L}: \mathbb{R}^d \to \mathbb{R}
 
 We want to successively update $\theta^{(0)} \to \theta^{(1)} \to \dots \to \theta^{(T)}$ such that $\theta^{(T)} \approx \underset{\theta}{\operatorname{argmin}}{\mathcal{L}(\theta)}$.
 
-Let $\Delta \theta$ denote such an update to our parameters. Each update is applied as follows
+Let $\Delta \theta$ denote an update to our parameters (a small change). Updates are applied as follows
 $$
-\theta^{(t+1)} \gets \theta^{(t)} + \Delta \theta^{(t)}.
+\theta^{(t+1)} \gets \theta^{(t)} + \Delta \theta.
 $$
 
-We can frame the problem of finding an update $\Delta \theta$ as
+We can thus frame the problem of finding a *good* update $\Delta \theta$ as
 $$
 \Delta\theta^{(t)} \gets \underset{\Delta \theta}{\operatorname{argmin}}{\mathcal{L}(\theta^{(t)} + \Delta\theta)}.
 $$
 
 A Taylor expansion yields
 $$
-\mathcal{L}(\theta + \Delta\theta) = \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta + \frac{1}{2} \Delta\theta^T \nabla^2_{\theta}\mathcal{L}(\theta) \Delta\theta + \dots.
+\mathcal{L}(\theta + \Delta\theta) = \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta + \frac{1}{2} \Delta\theta^T \cdot \nabla^2_{\theta}\mathcal{L}(\theta) \cdot \Delta\theta + \dots
 $$
 
-In first-order methods (such as SGD, Adam and Muon) we only keep the first derivative, that is we only look at the slope
+In first-order methods (such as SGD, Adam and Muon) we only use gradient information (we only look at the slope)
 $$
-\mathcal{L}(\theta + \Delta\theta) \approx \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta,
+\mathcal{L}(\theta + \Delta\theta) \approx \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta,
 $$
-looking at the curvature (Hessian) is very useful, however for large neural networks it is too computationally expensive ($\nabla^2_{\theta}\mathcal{L}(\theta) = \mathbf{H} \in \mathbb{R}^{d \times d}$).
+looking at the curvature (Hessian) is very useful, however, for large neural networks with millions of parameters it is too computationally expensive ($\nabla^2_{\theta}\mathcal{L}(\theta) = \mathbf{H} \in \mathbb{R}^{d \times d}$).
 
-At their core, gradient-based approaches have to manage the tension between taking a sufficiently large step in the direction of the slope, and not taking a step that is too large given that the slope only provides limited information.  
+At their core, gradient-based approaches have to manage the tension between (A) taking a sufficiently large step in the direction of the slope, and (B) not taking a step that too far given that the slope only provides limited information.  
 
-Let's continue looking at our finding-the-update problem, which we can now express as
+Okat, let's continue looking at our finding-the-update problem, which we can now express as
 $$
-\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta,
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta,
 $$
 and note that we can discard the constant, giving us
 $$
-\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta.
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta.
 $$
 
-There is an issue here: because this problem linear and unconstrained, no minimizer exists. We therefore need to add a constraint. **Very neatly, different constraints on $\Delta \theta$ will allow us to recover many first-order methods, Muon included.** 
+There is an issue here: because this proble is linear and unconstrained, no minimizer exists. We must add a constraint. **Interestingly, different constraints (or penalties) on $\Delta \theta$ will allow us to recover many first-order methods, including Muon.** Another way of putting it (the constraint) is to say that we have to pick a mesure of what "one step" is. 
 
-Another way of putting it is to say that we have to pick a mesure of what "one step" is. 
-
-For example, let's add the following penalty
+To illustrate what I mean, let's add the following penalty
 $$
-\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta + \frac{1}{2 \cdot lr} \Vert \Delta \theta \Vert_2^2,
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta + \frac{1}{2 \cdot lr} \Vert \Delta \theta \Vert_2^2,
 $$
 setting the derivative to 0 and solving for $\Delta \theta$ yields
 $$
 \Delta \theta \gets -lr \cdot \nabla_{\theta} \mathcal{L}(\theta),
 $$
-the plain SGD update.
+the classic SGD update.
 
-One thing we can observe with SGD is that the step we take depends on the magnitude of the gradient. This makes sense: if the slope is steep, it is reasonable to take a larger step to converge faster. However, recall that this gradient information is only valid over a short distance, we can not trust it over large distances. (Probably there are many other reasons why this is bad in chaotic loss landscapes.)
+One thing we can observe with SGD is that the step we take depends on the magnitude of the gradient. This makes sense: if the slope is steep, it seems reasonable to take a larger step, to converge faster. However, recall that this gradient information is only valid over a short distance, and that we can not trust it over large distances. (Probably there are many other reasons why this is bad in chaotic loss landscapes.)
 
-![](../images/loss-landscape.png){width=25%}
+![](../images/loss-landscape.png){width=30%}
 
-Let us try something different
+Let's try something different
 $$
-\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \Delta\theta \quad \text{ subject to } \Vert \Delta \theta \Vert_{\infty} \leq lr,
+\Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta \;\; \text{ subject to } \Vert \Delta \theta \Vert_{\infty} \leq lr,
 $$
 where the $l_{\infty}$ norm is defined as $\underset{i}{\max} \vert \Delta\theta_i \vert$.
 
-This yields [signSGD](https://arxiv.org/abs/1802.04434)
+Thsi time, solving for the update yields [signSGD](https://arxiv.org/abs/1802.04434)
 $$
-\Delta \theta \gets -lr \cdot \operatorname{sign}(\nabla_{\theta} \mathcal{L}(\theta)).
+\Delta \theta \gets -lr \cdot \operatorname{sign}\left(\nabla_{\theta} \mathcal{L}(\theta)\right).
 $$
 
-This is interesting, because now the update does not depend on gradient magnitude. This can be seen as a simple way of bypassing the issues mentioned above about plain SGD: just take a fixed step no matter what the underlying gradient is.
+This is interesting, because now the update does not depend on gradient magnitude, only on its direction. This can be seen as a simple (*extreme*) way of bypassing the issues mentioned above: just take a fixed step no matter what the underlying gradient is.
 
-We saw how two different constraints/penalties recover two well-known optimizers. Let's move on to Muon.
+We saw how two different constraints/penalties recover two well-known optimizers, and we discussed the idea of setting a measure of what one-step is. We can move on to Muon.
 
 ***
 
-First, Muon is an optimizer for hidden matrix parameters (that map dense activations to dense activations). Intuitively this probably means that the constraint it uses is only defined for matrices. 
+At its core, Muon is about setting a different constraint in our update problem (just like signSGD used the $l_{\infty}$) norm).
 
-From now on we will focus on the update of a hidden matrix $\mathbf{W} \in \mathbb{R}^{\text{in} \times \text{out}}$ rather than the full set of parameters $\theta$. The non-matrix parameters (e.g. biases) are typically optimized using Adam.
+First, Muon is an optimizer for hidden matrix parameters *only* (linear layers that map dense activations to dense activations). $\to$ This probably means that the constraint it uses is only defined for matrices. 
 
-A matrix is a linear transformation, it takes a vector and transforms it (rotates and/or stretches it). The constraint we want to use should be about *what matrices do* rather than just looking at their individual entries. 
+From now on we will instead focus on the update of a hidden matrix $\mathbf{W} \in \mathbb{R}^{\text{out} \times \text{in}}$. For convenience let's denotes its gradient as $\mathbf{G} = \nabla_{\mathbf{W}} \mathcal{L}(\theta)$.
 
-First, let's define a measure of size for a vector $\mathbf{x} \in \mathbb{R}^{d}$. We will use the RMS norm
+The non-matrix parameters (e.g. biases) are typically optimized using AdamW.
+
+Okay so, what is a matrix ? A matrix is a linear transformation, it takes a vector and transforms it. The constraint we want to use is about *what matrices do* rather than just looking at their individual entries. 
+
+Let's begin by defining a measure of size for a vector $\mathbf{x} \in \mathbb{R}^{d}$.
+
+We will use the RMS norm
 $$
 \Vert \mathbf{x} \Vert_{\text{RMS}} = \sqrt{ \frac{1}{d} \sum_{i=1}^{d}{x_i^2}}
 $$
 which basically is an $l_2$ norm that is invariant to the number of the dimensions of our vector.
 
-We can now define our measure of matrix size: the RMS-to-RMS norm
+We can now define our measure of matrix "size" $\to$ the RMS-to-RMS norm
 $$
 \Vert \mathbf{W} \Vert_{\text{RMS} \to \text{RMS}} = \max(\{ \Vert \mathbf{Wx} \Vert_{\text{RMS}} : \Vert \mathbf{x} \Vert_{\text{RMS}} = 1 \}).
 $$
 
-For ease of notation let $\mathbf{G} = \nabla_{\mathbf{W}}\mathcal{L}(\theta)$. 
+This norm measures the maximum stretch performed by the matrix $\mathbf{W}$. So it is a measure of what the matrix does, rather than the individual entries it contains. Nice.
 
-This norm measures the maximum stretch performed by the matrix $\mathbf{W}$. So it is actually a measure of what the matrix does, rather than what it contains. Interesting.
-
-Let us once again formulate our problem, using our new constraint 
+Let us (once again) re-formulate our problem using our new constraint 
 $$
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{G}^T \Delta\mathbf{W} \quad \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1.
+\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \operatorname{tr}(\mathbf{G}^T \cdot \Delta\mathbf{W}) \;\; \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1.
 $$
 
-We have defined what "one step" was, this also means that the learning rate can be interpreted as: each step changes the layer’s output by at most about $lr$% of its typical size.
+We have just defined what "one step" was, this also means that the learning rate can be interpreted *each step changes the layer’s output by at most about $lr$% of its typical size*.
+
+The RMS-to-RMS norm can be rewritten in terms of the matrix spectral norm $\Vert \Delta \mathbf{W} \Vert_2 = \sigma_{\max}$ as follows
+$$
+\Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} = \sqrt{\frac{\text{in}}{\text{out}}} \cdot \Vert \Delta \mathbf{W} \Vert_2,
+$$
+we rewrite our problem using this spectral norm
+$$
+\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \operatorname{tr}(\mathbf{G}^T \cdot \Delta\mathbf{W}) \;\; \text{ subject to } \sigma_{\max} \leq \frac{1}{\sqrt{\text{in} / \text{out}}}.
+$$
+
+Since we are now dealing with singular values, let us replace both $\mathbf{G}$ and $\Delta \mathbf{W}$ by their singular value decompositions $\mathbf{G} = \mathbf{U \Sigma V}^T$ and $\Delta \mathbf{W} = \bar{\mathbf{U}} \bar{\mathbf{\Sigma}} \bar{\mathbf{V}}^T$
+$$
+\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W} \equiv \bar{\mathbf{U}} \bar{\mathbf{\Sigma}} \bar{\mathbf{V}}^T}{\operatorname{argmin}} \operatorname{tr}(\mathbf{V \Sigma U}^T \bar{\mathbf{U}} \bar{\mathbf{\Sigma}} \bar{\mathbf{V}}^T) \;\; \text{ subject to } \sigma_{\max} \leq \frac{1}{\sqrt{\text{in} / \text{out}}}.
+$$
 
 
-The RMS-to-RMS norm can be rewritten in terms of the matrix spectral norm $\Vert \mathbf{W} \Vert_2 = \sigma_{\max}$ as follows
-$$
-\Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} = \sqrt{\frac{\text{in}}{\text{out}}} \cdot \Vert \mathbf{W} \Vert_2,
-$$
-and let us then rewrite our problem using this new insight
-$$
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{G}^T \Delta\mathbf{W} \quad \text{ subject to } \sigma_{\max} \leq 1.
-$$
-
-Now, let us replace both $\mathbf{G}$ and $\mathbf{\Delta W}$ by their singular value decompositions 
-$$
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \mathbf{V}_{\mathbf{G}} \mathbf{\Sigma}_{\mathbf{G}} \mathbf{U}^T_{\mathbf{G}} \mathbf{U}_{\Delta\mathbf{W}} \mathbf{\Sigma}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}} \quad \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1.
-$$
 and note that $\text{subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1$ now simply means $\text{subject to } \mathbf{\Sigma}_{\Delta\mathbf{W}} = I$. Indeed, if we have a "budget" of at most 1 for each singular value, we might as well use it fully. This simplifies the problem
 $$
 \Delta\mathbf{W} \gets \underset{\mathbf{U}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}}}{\operatorname{argmin}} \mathbf{V}_{\mathbf{G}} \mathbf{\Sigma}_{\mathbf{G}} \mathbf{U}^T_{\mathbf{G}} \mathbf{U}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}} \quad \text{ subject to } \mathbf{U}_{\Delta\mathbf{W}}, \mathbf{V}^T_{\Delta\mathbf{W}} \text{ orthogonal}.
@@ -145,5 +148,5 @@ However, computing the SVD for each layer at each iteration would be prohibitive
 
 The method is called Newton-Schulz orthogonalization.
 
-![](../images/newton-schulz.png){width=50%}
+![](../images/newton-schulz.png){width=75%}
 
