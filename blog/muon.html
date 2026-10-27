@@ -236,7 +236,7 @@ window.Quarto = {
 <p>We see that we have a fixed “budget” for each singular value, so we use it fully, this yields <span class="math display">\[
 \bar{\mathbf{\Sigma}} = \sqrt{\frac{\text{out}}{\text{in}}} \cdot I,
 \]</span> and using <span class="math inline">\(\operatorname{tr}(c\mathbf{A}) = c \operatorname{tr}(\mathbf{A})\)</span> gives <span class="math display">\[
-\sqrt{\frac{\text{in}}{\text{out}}} \cdot \Delta\mathbf{W} \gets \underset{\bar{\mathbf{U}} \bar{\mathbf{V}}^T}{\operatorname{argmin}} \operatorname{tr}(\mathbf{V \Sigma U}^T \bar{\mathbf{U}} \bar{\mathbf{V}}^T) \;\; \text{ subject to } \bar{\mathbf{U}} \text{ and } \bar{\mathbf{V}} \text{ orthogonal}.
+\sqrt{\frac{\text{in}}{\text{out}}} \cdot \Delta\mathbf{W} \gets \underset{\bar{\mathbf{U}} \bar{\mathbf{V}}^T}{\operatorname{argmin}} \operatorname{tr}(\mathbf{V \Sigma U}^T \bar{\mathbf{U}} \bar{\mathbf{V}}^T) \;\; \text{ subject to } \bar{\mathbf{U}}^T\bar{\mathbf{U}} = I  \text{ and } \bar{\mathbf{V}}^T\bar{\mathbf{V}} = I.
 \]</span></p>
 <p>The solution to the problem above is to maximize alignment with <span class="math inline">\(\bar{\mathbf{U}} \bar{\mathbf{V}}^T = -{\mathbf{U}} {\mathbf{V}}^T\)</span>.</p>
 <p>Finally giving us the <strong>Muon update rule</strong> <span class="math display">\[
