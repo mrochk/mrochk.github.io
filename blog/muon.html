@@ -236,12 +236,7 @@ window.Quarto = {
 <p>We see that we have a fixed “budget” for each singular value, so we use it fully, this yields <span class="math display">\[
 \hat{\mathbf{\Sigma}} = \sqrt{\frac{\text{out}}{\text{in}} \cdot I,
 \]</span> using <span class="math inline">\(\operatorname{tr}(c\mathbf{A}) = c \operatorname{tr}(\mathbf{A})\)</span> <span class="math display">\[
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W} \equiv \bar{\mathbf{U}} \bar{\mathbf{V}}^T}{\operatorname{argmin}} \sqrt{\frac{\text{out}}{\text{in}}} \operatorname{tr}(\mathbf{V \Sigma U}^T \bar{\mathbf{U}} \bar{\mathbf{V}}^T) \;\; \text{ subject to } \bar{\mathbf{U}}, \bar{\mathbf{V}} \text{ orthogonal}.
-\]</span></p>
-<p>and note that <span class="math inline">\(\text{subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1\)</span> now simply means <span class="math inline">\(\text{subject to } \mathbf{\Sigma}_{\Delta\mathbf{W}} = I\)</span>. Indeed, if we have a “budget” of at most 1 for each singular value, we might as well use it fully. This simplifies the problem <span class="math display">\[
-\Delta\mathbf{W} \gets \underset{\mathbf{U}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}}}{\operatorname{argmin}} \mathbf{V}_{\mathbf{G}} \mathbf{\Sigma}_{\mathbf{G}} \mathbf{U}^T_{\mathbf{G}} \mathbf{U}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}} \quad \text{ subject to } \mathbf{U}_{\Delta\mathbf{W}}, \mathbf{V}^T_{\Delta\mathbf{W}} \text{ orthogonal}.
-\]</span> and the solution to this is to maximize alignment, that is <span class="math inline">\(\mathbf{U}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}} \gets -\mathbf{U}_{\mathbf{G}}\mathbf{V}^T_{\mathbf{G}}\)</span>. The last step is re-multiply by the factor <span class="math inline">\(\sqrt{\frac{\text{in}}{\text{out}}}\)</span> <strong>giving us the Muon update rule</strong> <span class="math display">\[
-\Delta \mathbf{W} \gets -lr \cdot \frac{\text{in}}{\text{out}} \cdot \mathbf{U}_{\mathbf{G}}\mathbf{V}^T_{\mathbf{G}}.
+\sqrt{\frac{\text{in}}{\text{out}}} \cdot \Delta\mathbf{W} \gets \underset{\bar{\mathbf{U}} \bar{\mathbf{V}}^T}{\operatorname{argmin}} \operatorname{tr}(\mathbf{V \Sigma U}^T \bar{\mathbf{U}} \bar{\mathbf{V}}^T) \;\; \text{ subject to } \bar{\mathbf{U}} \text{ and } \bar{\mathbf{V}} \text{ orthogonal}.
 \]</span></p>
 <p>The operation that consists in setting the singular values of <span class="math inline">\(\mathbf{G}\)</span> to be all equal to 1 is called <em>orthogonalization</em>.</p>
 <hr>
