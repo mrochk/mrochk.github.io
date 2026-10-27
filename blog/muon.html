@@ -224,7 +224,7 @@ window.Quarto = {
 <p>Let us (once again) re-formulate our problem using our new constraint <span class="math display">\[
 \Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \operatorname{tr}(\mathbf{G}^T \cdot \Delta\mathbf{W}) \;\; \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1.
 \]</span></p>
-<p>We have just defined what “one step” was, this also means that the learning rate can be interpreted <em>each step changes the layer’s output by at most about <span class="math inline">\(lr\)</span>% of its typical size</em>.</p>
+<p>We have just defined what “one step” was, this also means that the learning rate can (roughly) be interpreted <em>each step changes the layer’s output by at most about lr% of its typical size</em>.</p>
 <p>The RMS-to-RMS norm can be rewritten in terms of the matrix spectral norm <span class="math inline">\(\Vert \Delta \mathbf{W} \Vert_2 = \sigma_{\max}\)</span> as follows <span class="math display">\[
 \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} = \sqrt{\frac{\text{in}}{\text{out}}} \cdot \Vert \Delta \mathbf{W} \Vert_2,
 \]</span> we rewrite our problem using this spectral norm <span class="math display">\[
