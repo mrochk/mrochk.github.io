@@ -235,6 +235,8 @@ window.Quarto = {
 \]</span></p>
 <p>We see that we have a fixed “budget” for each singular value, so we use it fully, this yields <span class="math display">\[
 \hat{\mathbf{\Sigma}} = \sqrt{\frac{\text{out}}\text{in}} \cdot I,
+\]</span> using <span class="math inline">\(\operatorname{tr}(c\mathbf{A}) = c \operatorname{tr}(c\mathbf{A})\)</span> <span class="math display">\[
+\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W} \equiv \bar{\mathbf{U}} \bar{\mathbf{V}}^T}{\operatorname{argmin}} \sqrt{\frac{\text{out}}{\text{in}}} \operatorname{tr}(\mathbf{V \Sigma U}^T \bar{\mathbf{U}} \bar{\mathbf{V}}^T) \;\; \text{ subject to } \bar{\mathbf{U}}, \bar{\mathbf{V}} \text{ orthogonal}.
 \]</span></p>
 <p>and note that <span class="math inline">\(\text{subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq 1\)</span> now simply means <span class="math inline">\(\text{subject to } \mathbf{\Sigma}_{\Delta\mathbf{W}} = I\)</span>. Indeed, if we have a “budget” of at most 1 for each singular value, we might as well use it fully. This simplifies the problem <span class="math display">\[
 \Delta\mathbf{W} \gets \underset{\mathbf{U}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}}}{\operatorname{argmin}} \mathbf{V}_{\mathbf{G}} \mathbf{\Sigma}_{\mathbf{G}} \mathbf{U}^T_{\mathbf{G}} \mathbf{U}_{\Delta\mathbf{W}} \mathbf{V}^T_{\Delta\mathbf{W}} \quad \text{ subject to } \mathbf{U}_{\Delta\mathbf{W}}, \mathbf{V}^T_{\Delta\mathbf{W}} \text{ orthogonal}.
