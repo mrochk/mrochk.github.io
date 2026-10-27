@@ -240,7 +240,7 @@ window.Quarto = {
 \]</span></p>
 <p>The solution to the problem above is to maximize alignment with <span class="math inline">\(\bar{\mathbf{U}} \bar{\mathbf{V}}^T = -{\mathbf{U}} {\mathbf{V}}^T\)</span>.</p>
 <p>Finally giving us the <strong>Muon update rule</strong> <span class="math display">\[
-\Delta \mathbf{W} \gets - lr \cdot \frac{\text{in}}{\text{out}} \cdot \mathbf{U} \mathbf{V}^T
+\Delta \mathbf{W} \gets - lr \cdot \sqrt{\frac{\text{in}}{\text{out}}} \cdot \mathbf{U} \mathbf{V}^T
 \]</span> where <span class="math inline">\(\bar{\mathbf{U}} \bar{\mathbf{V}}^T\)</span> is obtained by <em>orthogonalizing</em> <span class="math inline">\(\mathbf{G}\)</span>, the gradient with respect to <span class="math inline">\(\mathbf{W}\)</span>.</p>
 <hr>
 <p>However, computing the SVD for each layer’s gradient at each iteration would be prohibitively expensive.</p>
