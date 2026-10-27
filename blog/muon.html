@@ -228,10 +228,10 @@ window.Quarto = {
 <p>The RMS-to-RMS norm can be rewritten in terms of the matrix spectral norm <span class="math inline">\(\Vert \Delta \mathbf{W} \Vert_2 = \sigma_{\max}\)</span> as follows <span class="math display">\[
 \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} = \sqrt{\frac{\text{in}}{\text{out}}} \cdot \Vert \Delta \mathbf{W} \Vert_2,
 \]</span> we rewrite our problem using this spectral norm <span class="math display">\[
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \operatorname{tr}(\mathbf{G}^T \cdot \Delta\mathbf{W}) \;\; \text{ subject to } \sigma_{\max} \leq \sqrt{\frac{\text{out}}{\text{out}}}.
+\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \operatorname{tr}(\mathbf{G}^T \cdot \Delta\mathbf{W}) \;\; \text{ subject to } \sigma_{\max} \leq \sqrt{\frac{\text{out}}{\text{in}}}.
 \]</span></p>
 <p>Since we are now dealing with singular values, let us replace both <span class="math inline">\(\mathbf{G}\)</span> and <span class="math inline">\(\Delta \mathbf{W}\)</span> by their singular value decompositions <span class="math inline">\(\mathbf{G} = \mathbf{U \Sigma V}^T\)</span> and <span class="math inline">\(\Delta \mathbf{W} = \bar{\mathbf{U}} \bar{\mathbf{\Sigma}} \bar{\mathbf{V}}^T\)</span> <span class="math display">\[
-\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W} \equiv \bar{\mathbf{U}} \bar{\mathbf{\Sigma}} \bar{\mathbf{V}}^T}{\operatorname{argmin}} \operatorname{tr}(\mathbf{V \Sigma U}^T \bar{\mathbf{U}} \bar{\mathbf{\Sigma}} \bar{\mathbf{V}}^T) \;\; \text{ subject to } \sigma_{\max} \leq \sqrt{\frac{\text{out}}{\text{out}}}.
+\Delta\mathbf{W} \gets \underset{\Delta \mathbf{W} \equiv \bar{\mathbf{U}} \bar{\mathbf{\Sigma}} \bar{\mathbf{V}}^T}{\operatorname{argmin}} \operatorname{tr}(\mathbf{V \Sigma U}^T \bar{\mathbf{U}} \bar{\mathbf{\Sigma}} \bar{\mathbf{V}}^T) \;\; \text{ subject to } \sigma_{\max} \leq \sqrt{\frac{\text{out}}{\text{in}}}.
 \]</span></p>
 <p>We see that we have a fixed “budget” for each singular value, so we use it fully, this yields <span class="math display">\[
 \bar{\mathbf{\Sigma}} = \sqrt{\frac{\text{out}}{\text{in}}} \cdot I,
