@@ -238,14 +238,15 @@ window.Quarto = {
 \]</span> and using <span class="math inline">\(\operatorname{tr}(c\mathbf{A}) = c \operatorname{tr}(\mathbf{A})\)</span> gives <span class="math display">\[
 \sqrt{\frac{\text{in}}{\text{out}}} \cdot \Delta\mathbf{W} \gets \underset{\bar{\mathbf{U}} \bar{\mathbf{V}}^T}{\operatorname{argmin}} \operatorname{tr}(\mathbf{V \Sigma U}^T \bar{\mathbf{U}} \bar{\mathbf{V}}^T) \;\; \text{ subject to } \bar{\mathbf{U}}^T\bar{\mathbf{U}} = I  \text{ and } \bar{\mathbf{V}}^T\bar{\mathbf{V}} = I.
 \]</span></p>
-<p>The solution to the problem above is to maximize alignment with <span class="math inline">\(\bar{\mathbf{U}} \bar{\mathbf{V}}^T = -{\mathbf{U}} {\mathbf{V}}^T\)</span>.</p>
+<p>The solution to the problem above is <span class="math inline">\(\bar{\mathbf{U}} \bar{\mathbf{V}}^T = -{\mathbf{U}} {\mathbf{V}}^T\)</span>.</p>
 <p>Finally giving us the <strong>Muon update rule</strong> <span class="math display">\[
-\Delta \mathbf{W} \gets - lr \cdot \sqrt{\frac{\text{in}}{\text{out}}} \cdot \mathbf{U} \mathbf{V}^T
-\]</span> where <span class="math inline">\(\bar{\mathbf{U}} \bar{\mathbf{V}}^T\)</span> is obtained by <em>orthogonalizing</em> <span class="math inline">\(\mathbf{G}\)</span>, the gradient with respect to <span class="math inline">\(\mathbf{W}\)</span>.</p>
+\Delta \mathbf{W} \gets - lr \cdot \sqrt{\frac{\text{out}}{\text{in}}} \cdot \mathbf{U} \mathbf{V}^T
+\]</span> where <span class="math inline">\(\mathbf{U} \mathbf{V}^T\)</span> is obtained by <em>orthogonalizing</em> <span class="math inline">\(\mathbf{G}\)</span> (setting its singular values to 1) the gradient with respect to <span class="math inline">\(\mathbf{W}\)</span>.</p>
 <hr>
 <p>However, computing the SVD for each layer’s gradient at each iteration would be prohibitively expensive.</p>
 <p>Instead, Jeremy Bernstein found a way to do it much more efficiently. The method is called Newton-Schulz orthogonalization.</p>
 <p><img src="../images/newton-schulz.png" class="img-fluid" style="width:75.0%"></p>
+<p>The core idea is that is allows to set each singular value close to 1 <em>without explicitly computing the SVD</em>. This approximation is sufficient to make the algorithm work well in practice.</p>
 
 
 
