@@ -171,7 +171,7 @@ window.Quarto = {
 <p><br></p>
 <p><em>This post does not talk about the Newton-Schulz orthogonalization in detail, just about the general intuitions behind Muon.</em></p>
 <p>Let <span class="math inline">\(\theta \in \mathbb{R}^d\)</span> be the parameters of our neural network.</p>
-<p>We have a differentiable loss function <span class="math inline">\(\mathcal{L}: \mathbb{R}^d \to \mathbb{R}\)</span> that tells us how good our model performs.</p>
+<p>We have a differentiable loss function <span class="math inline">\(\mathcal{L}: \mathbb{R}^d \to \mathbb{R}\)</span> that tells us how well our model performs.</p>
 <p>We want to successively update <span class="math inline">\(\theta^{(0)} \to \theta^{(1)} \to \dots \to \theta^{(T)}\)</span> such that <span class="math inline">\(\theta^{(T)} \approx \underset{\theta}{\operatorname{argmin}}{\mathcal{L}(\theta)}\)</span>.</p>
 <p>Let <span class="math inline">\(\Delta \theta\)</span> denote an update to our parameters (a small change). Updates are applied as follows <span class="math display">\[
 \theta^{(t+1)} \gets \theta^{(t)} + \Delta \theta.
@@ -185,13 +185,13 @@ window.Quarto = {
 <p>In first-order methods (such as SGD, Adam and Muon) we only use gradient information (we only look at the slope) <span class="math display">\[
 \mathcal{L}(\theta + \Delta\theta) \approx \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta,
 \]</span> looking at the curvature (Hessian) is very useful, however, for large neural networks with millions of parameters it is too computationally expensive (<span class="math inline">\(\nabla^2_{\theta}\mathcal{L}(\theta) = \mathbf{H} \in \mathbb{R}^{d \times d}\)</span>).</p>
-<p>At their core, gradient-based approaches have to manage the tension between (A) taking a sufficiently large step in the direction of the slope, and (B) not taking a step that too far given that the slope only provides limited information.</p>
-<p>Okat, let’s continue looking at our finding-the-update problem, which we can now express as <span class="math display">\[
+<p>At their core, gradient-based approaches have to manage the tension between (A) taking a sufficiently large step in the direction of the slope, and (B) not taking a step too far given that the slope only provides limited information.</p>
+<p>Okay, let’s continue looking at our finding-the-update problem, which we can now express as <span class="math display">\[
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \mathcal{L}(\theta) + \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta,
 \]</span> and note that we can discard the constant, giving us <span class="math display">\[
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta.
 \]</span></p>
-<p>There is an issue here: because this proble is linear and unconstrained, no minimizer exists. We must add a constraint. <strong>Interestingly, different constraints (or penalties) on <span class="math inline">\(\Delta \theta\)</span> will allow us to recover many first-order methods, including Muon.</strong> Another way of putting it (the constraint) is to say that we have to pick a mesure of what “one step” is.</p>
+<p>There is an issue here: because this proble is linear and unconstrained, no minimizer exists. We must add a constraint. <strong>Interestingly, different constraints (or penalties) on <span class="math inline">\(\Delta \theta\)</span> will allow us to recover many first-order methods, including Muon.</strong> Another way of putting it (the constraint) is to say that we have to pick a measure of what “one step” is.</p>
 <p>To illustrate what I mean, let’s add the following penalty <span class="math display">\[
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta + \frac{1}{2 \cdot lr} \Vert \Delta \theta \Vert_2^2,
 \]</span> setting the derivative to 0 and solving for <span class="math inline">\(\Delta \theta\)</span> yields <span class="math display">\[
@@ -202,7 +202,7 @@ window.Quarto = {
 <p>Let’s try something different <span class="math display">\[
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta \;\; \text{ subject to } \Vert \Delta \theta \Vert_{\infty} \leq lr,
 \]</span> where the <span class="math inline">\(l_{\infty}\)</span> norm is defined as <span class="math inline">\(\underset{i}{\max} \vert \Delta\theta_i \vert\)</span>.</p>
-<p>Thsi time, solving for the update yields <a href="https://arxiv.org/abs/1802.04434">signSGD</a> <span class="math display">\[
+<p>This time, solving for the update yields <a href="https://arxiv.org/abs/1802.04434">signSGD</a> <span class="math display">\[
 \Delta \theta \gets -lr \cdot \operatorname{sign}\left(\nabla_{\theta} \mathcal{L}(\theta)\right).
 \]</span></p>
 <p>This is interesting, because now the update does not depend on gradient magnitude, only on its direction. This can be seen as a simple (<em>extreme</em>) way of bypassing the issues mentioned above: just take a fixed step no matter what the underlying gradient is.</p>
@@ -244,9 +244,9 @@ window.Quarto = {
 \]</span> where <span class="math inline">\(\mathbf{U} \mathbf{V}^T\)</span> is obtained by <em>orthogonalizing</em> <span class="math inline">\(\mathbf{G}\)</span> (setting its singular values to 1) the gradient with respect to <span class="math inline">\(\mathbf{W}\)</span>.</p>
 <hr>
 <p>However, computing the SVD for each layer’s gradient at each iteration would be prohibitively expensive.</p>
-<p>Instead, Jeremy Bernstein found a way to do it much more efficiently. The method is called Newton-Schulz orthogonalization.</p>
+<p>Instead, the researchers behind Muon found a way to do this much more efficiently. The method is called Newton-Schulz orthogonalization.</p>
 <p><img src="../images/newton-schulz.png" class="img-fluid" style="width:75.0%"></p>
-<p>The core idea is that is allows to set each singular value close to 1 <em>without explicitly computing the SVD</em>. This approximation is sufficient to make the algorithm work well in practice.</p>
+<p>The core idea is that it allows to set each singular value close to 1 <em>without explicitly computing the SVD</em>. This approximation is sufficient to make the algorithm work well in practice.</p>
 
 
 
