@@ -198,7 +198,12 @@ window.Quarto = {
 \Delta \theta \gets -lr \cdot \nabla_{\theta} \mathcal{L}(\theta),
 \]</span> the classic SGD update.</p>
 <p>One thing we can observe with SGD is that the step we take depends on the magnitude of the gradient. This makes sense: if the slope is steep, it seems reasonable to take a larger step, to converge faster. However, recall that this gradient information is only valid over a short distance, and that we can not trust it over large distances. (Probably there are many other reasons why this is bad in chaotic loss landscapes.)</p>
-<p><img src="../images/loss-landscape.png" class="img-fluid" style="width:30.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/loss-landscape.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption>loss-landscape</figcaption>
+</figure>
+</div>
 <p>Let’s try something different <span class="math display">\[
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta \;\; \text{ subject to } \Vert \Delta \theta \Vert_{\infty} \leq lr,
 \]</span> where the <span class="math inline">\(l_{\infty}\)</span> norm is defined as <span class="math inline">\(\underset{i}{\max} \vert \Delta\theta_i \vert\)</span>.</p>
@@ -245,7 +250,12 @@ window.Quarto = {
 <hr>
 <p>However, computing the SVD for each layer’s gradient at each iteration would be prohibitively expensive.</p>
 <p>Instead, the researchers behind Muon found a way to do this much more efficiently. The method is called Newton-Schulz orthogonalization.</p>
-<p><img src="../images/newton-schulz.png" class="img-fluid" style="width:75.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/newton-schulz.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>newton-schulz</figcaption>
+</figure>
+</div>
 <p>The core idea is that it allows us to set each singular value close to 1 <em>without explicitly computing the SVD</em>. This approximation is sufficient to make the algorithm work well in practice.</p>
 
 
