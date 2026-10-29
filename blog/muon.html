@@ -191,7 +191,7 @@ window.Quarto = {
 \]</span> and note that we can discard the constant, giving us <span class="math display">\[
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta.
 \]</span></p>
-<p>There is an issue here: because this proble is linear and unconstrained, no minimizer exists. We must add a constraint. <strong>Interestingly, different constraints (or penalties) on <span class="math inline">\(\Delta \theta\)</span> will allow us to recover many first-order methods, including Muon.</strong> Another way of putting it (the constraint) is to say that we have to pick a measure of what “one step” is.</p>
+<p>There is an issue here: because this problem is linear and unconstrained, no minimizer exists. We must add a constraint. <strong>Interestingly, different constraints (or penalties) on <span class="math inline">\(\Delta \theta\)</span> will allow us to recover many first-order methods, including Muon.</strong> Another way of putting it (the constraint) is to say that we have to pick a measure of what “one step” is.</p>
 <p>To illustrate what I mean, let’s add the following penalty <span class="math display">\[
 \Delta\theta \gets \underset{\Delta \theta}{\operatorname{argmin}} \nabla_{\theta}\mathcal{L}(\theta)^T \cdot \Delta\theta + \frac{1}{2 \cdot lr} \Vert \Delta \theta \Vert_2^2,
 \]</span> setting the derivative to 0 and solving for <span class="math inline">\(\Delta \theta\)</span> yields <span class="math display">\[
@@ -224,7 +224,7 @@ window.Quarto = {
 <p>We formulate our problem using this new constraint <span class="math display">\[
 \Delta\mathbf{W} \gets \underset{\Delta \mathbf{W}}{\operatorname{argmin}} \operatorname{tr}(\mathbf{G}^T \cdot \Delta\mathbf{W}) \;\; \text{ subject to } \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} \leq lr.
 \]</span></p>
-<p>We have just defined what “one step” was, this also means that the learning rate can (roughly) be interpreted <em>each step changes the layer’s output by at most about lr% of its typical size</em>.</p>
+<p>We have just defined what “one step” was, this also means that the learning rate can (roughly) be interpreted as <em>each step changes the layer’s output by at most about lr% of its typical size</em>.</p>
 <p>The RMS-to-RMS norm can be rewritten in terms of the matrix spectral norm <span class="math inline">\(\Vert \Delta \mathbf{W} \Vert_2 = \sigma_{\max}\)</span> as follows <span class="math display">\[
 \Vert \Delta \mathbf{W} \Vert_{{\text{RMS} \to \text{RMS}}} = \sqrt{\frac{\text{in}}{\text{out}}} \cdot \Vert \Delta \mathbf{W} \Vert_2,
 \]</span> we rewrite our problem using this identity <span class="math display">\[
@@ -246,7 +246,7 @@ window.Quarto = {
 <p>However, computing the SVD for each layer’s gradient at each iteration would be prohibitively expensive.</p>
 <p>Instead, the researchers behind Muon found a way to do this much more efficiently. The method is called Newton-Schulz orthogonalization.</p>
 <p><img src="../images/newton-schulz.png" class="img-fluid" style="width:75.0%"></p>
-<p>The core idea is that it allows to set each singular value close to 1 <em>without explicitly computing the SVD</em>. This approximation is sufficient to make the algorithm work well in practice.</p>
+<p>The core idea is that it allows us to set each singular value close to 1 <em>without explicitly computing the SVD</em>. This approximation is sufficient to make the algorithm work well in practice.</p>
 
 
 
