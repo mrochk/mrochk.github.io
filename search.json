@@ -1,10 +1,17 @@
 [
   {
-    "objectID": "docs.html",
-    "href": "docs.html",
-    "title": "Maxime Rochkoulets",
-    "section": "",
-    "text": "mbrl.pdf"
+    "objectID": "blog.html#october-2026",
+    "href": "blog.html#october-2026",
+    "title": "Blog (AI-Free Writing)",
+    "section": "October 2026",
+    "text": "October 2026\n\nthe muon optimizer"
+  },
+  {
+    "objectID": "blog.html#september-2026",
+    "href": "blog.html#september-2026",
+    "title": "Blog (AI-Free Writing)",
+    "section": "September 2026",
+    "text": "September 2026\n\nrotary positional embeddings"
   },
   {
     "objectID": "contact.html",
@@ -70,17 +77,10 @@
     "text": "Papers / Blog Posts\n\nGeneral\n\nEnhanced Transformer with Rotary Position Embedding (RoPE) [paper] [notes]\nKimi K3: Open Frontier Intelligence [paper]\n\n\n\nMuon-related [notes]\n\nLaker Newhouse’s blog post\nMuon is Scalable for LLM Training [paper]\nDion: Distributed Orthonormalized Updates [paper]\n\n\n\nJEPA-related\n\nA Path Towards Autonomous Machine Intelligence [paper]\nSelf-Supervised Learning from Images with a Joint-Embedding Predictive Architecture [paper]\n\n\n\nEpiplexity\n\nFrom Entropy to Epiplexity: Rethinking Information for Computationally Bounded Intelligence [paper]\nMatthew Farrugia’s blog post\n\n\n\nFisher Information"
   },
   {
-    "objectID": "blog.html#october-2026",
-    "href": "blog.html#october-2026",
-    "title": "Blog (AI-Free Writing)",
-    "section": "October 2026",
-    "text": "October 2026\n\nthe muon optimizer"
-  },
-  {
-    "objectID": "blog.html#september-2026",
-    "href": "blog.html#september-2026",
-    "title": "Blog (AI-Free Writing)",
-    "section": "September 2026",
-    "text": "September 2026\n\nrotary positional embeddings"
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Maxime Rochkoulets",
+    "section": "",
+    "text": "poster.pdf\nmbrl.pdf"
   }
 ]
