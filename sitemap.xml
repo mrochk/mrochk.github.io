@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mrochk.github.io/blog.html</loc>
-    <lastmod>2026-10-29T07:49:23.732Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mrochk.github.io/reading.html</loc>
-    <lastmod>2026-10-08T05:57:35.199Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mrochk.github.io/blog/rope.html</loc>
-    <lastmod>2026-10-29T08:58:27.128Z</lastmod>
+    <loc>https://mrochk.github.io/docs.html</loc>
+    <lastmod>2026-10-30T02:06:03.293Z</lastmod>
   </url>
   <url>
     <loc>https://mrochk.github.io/contact.html</loc>
-    <lastmod>2026-10-02T01:58:32.227Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mrochk.github.io/blog/muon.html</loc>
-    <lastmod>2026-10-29T08:56:54.087Z</lastmod>
+    <lastmod>2026-10-30T02:04:01.885Z</lastmod>
   </url>
   <url>
     <loc>https://mrochk.github.io/index.html</loc>
-    <lastmod>2026-10-29T08:57:56.503Z</lastmod>
+    <lastmod>2026-10-30T02:04:01.929Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mrochk.github.io/blog/rope.html</loc>
+    <lastmod>2026-10-30T02:04:01.885Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mrochk.github.io/blog/feynman.html</loc>
+    <lastmod>2026-10-30T02:04:01.881Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mrochk.github.io/blog/muon.html</loc>
+    <lastmod>2026-10-30T02:04:08.509Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mrochk.github.io/reading.html</loc>
+    <lastmod>2026-10-30T02:04:01.933Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mrochk.github.io/blog.html</loc>
+    <lastmod>2026-10-30T02:04:08.509Z</lastmod>
   </url>
 </urlset>
