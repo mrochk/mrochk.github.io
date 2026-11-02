@@ -235,11 +235,10 @@ window.Quarto = {
 \]</span></p>
 <p>We see that we have a fixed “budget” for each singular value, so we use it fully, this yields <span class="math display">\[
 \bar{\mathbf{\Sigma}} = lr \cdot \sqrt{\frac{\text{out}}{\text{in}}} \cdot I,
-\]</span> and using <span class="math inline">\(\operatorname{tr}(c\mathbf{A}) = c \operatorname{tr}(\mathbf{A})\)</span> gives <span class="math display">\[
+\]</span> and since <span class="math inline">\(\operatorname{tr}(c\mathbf{A}) = c \operatorname{tr}(\mathbf{A})\)</span> <span class="math display">\[
 lr \cdot \sqrt{\frac{\text{in}}{\text{out}}} \cdot \Delta\mathbf{W} \gets \underset{\bar{\mathbf{U}} \bar{\mathbf{V}}^T}{\operatorname{argmin}} \operatorname{tr}(\mathbf{V \Sigma U}^T \bar{\mathbf{U}} \bar{\mathbf{V}}^T) \;\; \text{ subject to } \bar{\mathbf{U}}^T\bar{\mathbf{U}} = I  \text{ and } \bar{\mathbf{V}}^T\bar{\mathbf{V}} = I.
 \]</span></p>
-<p>The solution to the problem above is <span class="math inline">\(\bar{\mathbf{U}} \bar{\mathbf{V}}^T = -{\mathbf{U}} {\mathbf{V}}^T\)</span>.</p>
-<p>Finally giving us the <strong>Muon update rule</strong> <span class="math display">\[
+<p>The solution to the problem above is <span class="math inline">\(\bar{\mathbf{U}} \bar{\mathbf{V}}^T = -{\mathbf{U}} {\mathbf{V}}^T\)</span>, <strong>finally giving us the muon update rule</strong> <span class="math display">\[
 \Delta \mathbf{W} \gets - lr \cdot \sqrt{\frac{\text{out}}{\text{in}}} \cdot \mathbf{U} \mathbf{V}^T
 \]</span> where <span class="math inline">\(\mathbf{U} \mathbf{V}^T\)</span> is obtained by <em>orthogonalizing</em> <span class="math inline">\(\mathbf{G}\)</span> (setting its singular values to 1) the gradient with respect to <span class="math inline">\(\mathbf{W}\)</span>.</p>
 <hr>
