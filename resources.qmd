@@ -1,4 +1,0 @@
-[poster.pdf](resources/poster.pdf)
-
-[mbrl.pdf](resources/mbrl.pdf)
-

@@ -1,5 +1,10 @@
 project:
   type: website
+  resources:
+    - docs/mbrl.pdf
+    - resources/mbrl.pdf
+    - resources/poster.pdf
+    - resources/resume.pdf
 
 website:
   title: "Maxime Rochkoulets"
@@ -12,6 +17,8 @@ website:
         text: Blog
       - href: contact.qmd
         text: Contact
+      - href: resources/resume.pdf
+        text: CV
 
 format:
   html:

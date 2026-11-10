@@ -4,13 +4,11 @@ title: "Maxime Rochkoulets"
 
 <img src="images/pp.jpg" width="200" border="3">
 
-I'm Maxime, an AI researcher working in Singapore (Genome Institute of Singapore).
+I'm Maxime, an AI researcher working in Singapore (Genome Institute of Singapore). I work mainly on problems related to RNA foundation models and structural biology.
 
 Prior to that, I obtained my masters in computer science from KU Leuven.
 
-My interests in machine learning lie mainly in scalable, non-supervised approaches (such as SSL and RL), but also NeuroAI and mechanistic interpretability.
-
-I am open to PhD opportunities (starting in September 2027), so please do not hesitate to [contact me](https://mrochk.github.io/contact.html). 
+More generally, my interests in machine learning lie in scalable, non-supervised approaches (such as SSL and RL), but also NeuroAI and mechanistic interpretability.
 
 ***
 
@@ -19,3 +17,4 @@ I am open to PhD opportunities (starting in September 2027), so please do not he
 </center>
 
 ***
+
