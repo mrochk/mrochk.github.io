@@ -5,6 +5,7 @@ project:
     - resources/mbrl.pdf
     - resources/poster.pdf
     - resources/resume.pdf
+    - resources/statement.pdf
 
 website:
   title: "Maxime Rochkoulets"
